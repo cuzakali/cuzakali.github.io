@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="Web安全协议篇我太菜了，所以我想了一个办法，不如把所学的，记录下来，当讲师一般表达出去，或许更有利于记忆（题外话：其实是因为我面试的时候这些点没有答上来）    容本人抽口烟，先从Web理论知识点开始吧，再到协议，然后再说状态头那些可好？  Web理论知识流程图12345678910st&#x3D;&gt;start: 首先是Client访问域名op&#x3D;&gt;operation: 然后">
+<meta property="og:type" content="article">
+<meta property="og:title" content="akali&#39;s web road 01">
+<meta property="og:url" content="http://yoursite.com/2020/02/08/akali-s-web-road-01/index.html">
+<meta property="og:site_name" content="akali&#39; blog">
+<meta property="og:description" content="Web安全协议篇我太菜了，所以我想了一个办法，不如把所学的，记录下来，当讲师一般表达出去，或许更有利于记忆（题外话：其实是因为我面试的时候这些点没有答上来）    容本人抽口烟，先从Web理论知识点开始吧，再到协议，然后再说状态头那些可好？  Web理论知识流程图12345678910st&#x3D;&gt;start: 首先是Client访问域名op&#x3D;&gt;operation: 然后">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://akali.me/images/001.png">
+<meta property="article:published_time" content="2020-02-08T06:07:58.000Z">
+<meta property="article:modified_time" content="2020-02-08T06:11:56.538Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://akali.me/images/001.png">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>akali&#39;s web road 01</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- rss -->
+    
+    
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="https://github.com/cuzakali" target="_blank" rel="noopener">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" href="/2020/02/08/akali's%20web%20road%2000/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();' onclick='$("#share").toggle();return false;'></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2020/02/08/akali-s-web-road-01/" target="_blank" rel="noopener"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2020/02/08/akali-s-web-road-01/&text=akali&#39;s web road 01" target="_blank" rel="noopener"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2020/02/08/akali-s-web-road-01/&title=akali&#39;s web road 01" target="_blank" rel="noopener"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2020/02/08/akali-s-web-road-01/&is_video=false&description=akali&#39;s web road 01" target="_blank" rel="noopener"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=akali&#39;s web road 01&body=Check out this article: http://yoursite.com/2020/02/08/akali-s-web-road-01/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2020/02/08/akali-s-web-road-01/&title=akali&#39;s web road 01" target="_blank" rel="noopener"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2020/02/08/akali-s-web-road-01/&title=akali&#39;s web road 01" target="_blank" rel="noopener"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2020/02/08/akali-s-web-road-01/&title=akali&#39;s web road 01" target="_blank" rel="noopener"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2020/02/08/akali-s-web-road-01/&title=akali&#39;s web road 01" target="_blank" rel="noopener"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2020/02/08/akali-s-web-road-01/&name=akali&#39;s web road 01&description=" target="_blank" rel="noopener"><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Web安全协议篇"><span class="toc-number">1.</span> <span class="toc-text">Web安全协议篇</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Web理论知识"><span class="toc-number">1.1.</span> <span class="toc-text">Web理论知识</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#流程图"><span class="toc-number">1.1.1.</span> <span class="toc-text">流程图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#流程图-1"><span class="toc-number">1.1.2.</span> <span class="toc-text">流程图</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#然后再来说下Web的发展史："><span class="toc-number">1.2.</span> <span class="toc-text">然后再来说下Web的发展史：</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#这就不绘图了，要不显得有点敷衍～～早期的发展我的理解是从静态页面（Html-，到CGI-之后是javascript（JS），然后就是各种各样的了，例PHP啊跨时代的东西嘛，然后asp-net，JSP啊，我的理解只到此为止了，因为我对这方面不太敢兴趣，所以没有深入。"><span class="toc-number">1.2.0.0.1.</span> <span class="toc-text">这就不绘图了，要不显得有点敷衍～～早期的发展我的理解是从静态页面（Html)，到CGI,之后是javascript（JS），然后就是各种各样的了，例PHP啊跨时代的东西嘛，然后asp.net，JSP啊，我的理解只到此为止了，因为我对这方面不太敢兴趣，所以没有深入。</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Web术语"><span class="toc-number">1.3.</span> <span class="toc-text">Web术语</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#刷新：-在网站现有的基础上检查网页是否有更新内容，在检查时会保留一些变量的值。"><span class="toc-number">1.3.0.0.1.</span> <span class="toc-text">刷新： 在网站现有的基础上检查网页是否有更新内容，在检查时会保留一些变量的值。</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#转到：相当于是在地址栏中重新输入网页的URL访问，浏览器会尽量使用已经存在的缓存。（缓存可以有多种，例如cookie）"><span class="toc-number">1.3.0.0.2.</span> <span class="toc-text">转到：相当于是在地址栏中重新输入网页的URL访问，浏览器会尽量使用已经存在的缓存。（缓存可以有多种，例如cookie）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#C-S-：可以理解为软件与服务端交互的东西"><span class="toc-number">1.3.0.0.3.</span> <span class="toc-text">C&#x2F;S ：可以理解为软件与服务端交互的东西</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#B-S-：-也就是浏览器和服务端交互的东西"><span class="toc-number">1.3.0.0.4.</span> <span class="toc-text">B&#x2F;S ： 也就是浏览器和服务端交互的东西</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#HTML：-超文本标记语言"><span class="toc-number">1.3.0.0.5.</span> <span class="toc-text">HTML： 超文本标记语言</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#HTTP-超文本传输协议"><span class="toc-number">1.3.0.0.6.</span> <span class="toc-text">HTTP:  超文本传输协议</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#XML-：-扩展性标记语言（结构化语言，常用于App多些）"><span class="toc-number">1.3.0.0.7.</span> <span class="toc-text">XML ： 扩展性标记语言（结构化语言，常用于App多些）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Session-：-会话-（从你打开网页到关闭网页一直存在的，相当于时间）"><span class="toc-number">1.3.0.0.8.</span> <span class="toc-text">Session ： 会话 （从你打开网页到关闭网页一直存在的，相当于时间）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#cookie-相当于我们常用的身份证"><span class="toc-number">1.3.0.0.9.</span> <span class="toc-text">cookie : 相当于我们常用的身份证</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#request-请求-向服务器发送一个请求，然后服务器会返回你一个response（响应）的包"><span class="toc-number">1.3.0.0.10.</span> <span class="toc-text">request(请求) : 向服务器发送一个请求，然后服务器会返回你一个response（响应）的包</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#forward-：-是服务器内部重定向，程序收到请求，重新定向到另一个程序，而客户URL不发生变化"><span class="toc-number">1.3.0.0.11.</span> <span class="toc-text">forward ： 是服务器内部重定向，程序收到请求，重新定向到另一个程序，而客户URL不发生变化</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#redirect：-是服务器收到请求后发送一个状态头给客户，客户将再次请求，就有两次通行的来往，并且对于cliet来说URL地址已经发生了改变，相当于302跳转。"><span class="toc-number">1.3.0.0.12.</span> <span class="toc-text">redirect： 是服务器收到请求后发送一个状态头给客户，客户将再次请求，就有两次通行的来往，并且对于cliet来说URL地址已经发生了改变，相当于302跳转。</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Web组件："><span class="toc-number">1.4.</span> <span class="toc-text">Web组件：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#从内到外的一个详情："><span class="toc-number">1.4.1.</span> <span class="toc-text">从内到外的一个详情：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTP请求协议"><span class="toc-number">1.5.</span> <span class="toc-text">HTTP请求协议</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#URL"><span class="toc-number">1.5.1.</span> <span class="toc-text">URL:</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#详情理解可以为我们请求网站的格式是：http-www-baidu-com-80-index-php"><span class="toc-number">1.5.1.0.1.</span> <span class="toc-text">详情理解可以为我们请求网站的格式是：http:&#x2F;&#x2F;www.baidu.com:80&#x2F;index.php</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#然后在说下TCP-IP所在的位置"><span class="toc-number">1.5.2.</span> <span class="toc-text">然后在说下TCP&#x2F;IP所在的位置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#应用层协议"><span class="toc-number">1.5.3.</span> <span class="toc-text">应用层协议</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTP请求方法"><span class="toc-number">1.6.</span> <span class="toc-text">HTTP请求方法</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#请求头"><span class="toc-number">1.6.0.0.1.</span> <span class="toc-text">请求头</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#请求报文"><span class="toc-number">1.6.0.0.2.</span> <span class="toc-text">请求报文</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#请求正文"><span class="toc-number">1.6.0.0.3.</span> <span class="toc-text">请求正文</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#请求方法："><span class="toc-number">1.6.1.</span> <span class="toc-text">请求方法：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#状态码"><span class="toc-number">1.6.2.</span> <span class="toc-text">状态码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#常见状态码"><span class="toc-number">1.6.3.</span> <span class="toc-text">常见状态码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#高层协议"><span class="toc-number">1.6.4.</span> <span class="toc-text">高层协议</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#这里要写的太多，我缩短介绍下，说下我个人理解，高层协议可以理解为有FTP、NNTP、HTTP、SMTP等。然后中间通讯有三种中间介组成："><span class="toc-number">1.6.4.0.1.</span> <span class="toc-text">这里要写的太多，我缩短介绍下，说下我个人理解，高层协议可以理解为有FTP、NNTP、HTTP、SMTP等。然后中间通讯有三种中间介组成：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#一个代理根据URI的格式来接收请求，之后你可以重写全部或部分，然后通过URI的标识把已经格式化的请求，发到server，网关的话可以理解为接收代理请求的东西，把它当源服务器就很好理解了，之后通道也就是说，比如我访问你的网站，经过了HTPP请求，但当我访问到你的时候，请求却不限于HTTP，如果你熟悉链接流程就该知道的，通道可以这样理解：我去了你家，但是你家我们办法直接进去，需要把钥匙，而通道就是那把钥匙。"><span class="toc-number">1.6.4.0.2.</span> <span class="toc-text">一个代理根据URI的格式来接收请求，之后你可以重写全部或部分，然后通过URI的标识把已经格式化的请求，发到server，网关的话可以理解为接收代理请求的东西，把它当源服务器就很好理解了，之后通道也就是说，比如我访问你的网站，经过了HTPP请求，但当我访问到你的时候，请求却不限于HTTP，如果你熟悉链接流程就该知道的，通道可以这样理解：我去了你家，但是你家我们办法直接进去，需要把钥匙，而通道就是那把钥匙。</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#然后我们来说请求报文和响应报文是什么，都有什么。"><span class="toc-number">1.6.5.</span> <span class="toc-text">然后我们来说请求报文和响应报文是什么，都有什么。</span></a></li></ol></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index width mx-auto px2 my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        akali&#39;s web road 01
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">akali' blog</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2020-02-08T06:07:58.000Z" itemprop="datePublished">2020-02-08</time>
+    </div>
+
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h1 id="Web安全协议篇"><a href="#Web安全协议篇" class="headerlink" title="Web安全协议篇"></a>Web安全协议篇</h1><p><strong>我太菜了，所以我想了一个办法，不如把所学的，记录下来，当讲师一般表达出去，或许更有利于记忆（题外话：其实是因为我面试的时候这些点没有答上来）</strong></p>
+<img src="https://akali.me/images/001.png" width = "300" height = "300" />
+
+<blockquote>
+<p>容本人抽口烟，先从Web理论知识点开始吧，再到协议，然后再说状态头那些可好？</p>
+</blockquote>
+<h2 id="Web理论知识"><a href="#Web理论知识" class="headerlink" title="Web理论知识"></a>Web理论知识</h2><h3 id="流程图"><a href="#流程图" class="headerlink" title="流程图"></a>流程图</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">st&#x3D;&gt;start: 首先是Client访问域名</span><br><span class="line">op&#x3D;&gt;operation: 然后域名访问DNS</span><br><span class="line">cond&#x3D;&gt;condition: DNS在转到服务器（IP）</span><br><span class="line">e&#x3D;&gt;end: 服务器在将response包返回到client（客户）</span><br><span class="line"></span><br><span class="line">st-&gt;op-&gt;cond</span><br><span class="line">cond(yes)-&gt;e</span><br><span class="line">cond(no)-&gt;op</span><br><span class="line"></span><br><span class="line">&#96;&#96;&#96;&#96;&#96;&#96;&#96;&#96;&#96;&#96;&#96;&#96;&#96;&#96;&#96;&#96;&#96;&#96;</span><br></pre></td></tr></table></figure>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+
+
+</br>
+</br>
+</br>
+## Whios解析流程
+
+<h3 id="流程图-1"><a href="#流程图-1" class="headerlink" title="流程图"></a>流程图</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">st&#x3D;&gt;start: 先向whios服务器建立TCP端口为43的通道</span><br><span class="line">op&#x3D;&gt;operation: 然后发送对应查询的关键字：例如whios baidu.com</span><br><span class="line">cond&#x3D;&gt;condition: 服务器在返回该域名的信息</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">st-&gt;op-&gt;cond</span><br><span class="line">cond(yes)-&gt;e</span><br><span class="line">cond(no)-&gt;op</span><br><span class="line"></span><br><span class="line">&#96;&#96;&#96;&#96;&#96;&#96;&#96;&#96;&#96;&#96;&#96;&#96;&#96;&#96;&#96;&#96;&#96;&#96;</span><br></pre></td></tr></table></figure>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+
+<h2 id="然后再来说下Web的发展史："><a href="#然后再来说下Web的发展史：" class="headerlink" title="然后再来说下Web的发展史："></a>然后再来说下Web的发展史：</h2><h5 id="这就不绘图了，要不显得有点敷衍～～早期的发展我的理解是从静态页面（Html-，到CGI-之后是javascript（JS），然后就是各种各样的了，例PHP啊跨时代的东西嘛，然后asp-net，JSP啊，我的理解只到此为止了，因为我对这方面不太敢兴趣，所以没有深入。"><a href="#这就不绘图了，要不显得有点敷衍～～早期的发展我的理解是从静态页面（Html-，到CGI-之后是javascript（JS），然后就是各种各样的了，例PHP啊跨时代的东西嘛，然后asp-net，JSP啊，我的理解只到此为止了，因为我对这方面不太敢兴趣，所以没有深入。" class="headerlink" title="这就不绘图了，要不显得有点敷衍～～早期的发展我的理解是从静态页面（Html)，到CGI,之后是javascript（JS），然后就是各种各样的了，例PHP啊跨时代的东西嘛，然后asp.net，JSP啊，我的理解只到此为止了，因为我对这方面不太敢兴趣，所以没有深入。"></a>这就不绘图了，要不显得有点敷衍～～早期的发展我的理解是从静态页面（Html)，到CGI,之后是javascript（JS），然后就是各种各样的了，例PHP啊跨时代的东西嘛，然后asp.net，JSP啊，我的理解只到此为止了，因为我对这方面不太敢兴趣，所以没有深入。</h5><h2 id="Web术语"><a href="#Web术语" class="headerlink" title="Web术语"></a>Web术语</h2><p><strong>浏览器刷新与转到的区别：</strong></p>
+<h5 id="刷新：-在网站现有的基础上检查网页是否有更新内容，在检查时会保留一些变量的值。"><a href="#刷新：-在网站现有的基础上检查网页是否有更新内容，在检查时会保留一些变量的值。" class="headerlink" title="刷新： 在网站现有的基础上检查网页是否有更新内容，在检查时会保留一些变量的值。"></a>刷新： 在网站现有的基础上检查网页是否有更新内容，在检查时会保留一些变量的值。</h5><blockquote>
+<p>与转到的区别就在于浏览器，取网页的新内容来更新本机缓存，在更新的同时会保留一些变量。</p>
+</blockquote>
+<h5 id="转到：相当于是在地址栏中重新输入网页的URL访问，浏览器会尽量使用已经存在的缓存。（缓存可以有多种，例如cookie）"><a href="#转到：相当于是在地址栏中重新输入网页的URL访问，浏览器会尽量使用已经存在的缓存。（缓存可以有多种，例如cookie）" class="headerlink" title="转到：相当于是在地址栏中重新输入网页的URL访问，浏览器会尽量使用已经存在的缓存。（缓存可以有多种，例如cookie）"></a>转到：相当于是在地址栏中重新输入网页的URL访问，浏览器会尽量使用已经存在的缓存。（缓存可以有多种，例如cookie）</h5><blockquote>
+<p>相对于刷新他说一种全新的访问，它会尽量使用本机中的缓存我呢间，但不保留之前的变量。</p>
+</blockquote>
+<h5 id="C-S-：可以理解为软件与服务端交互的东西"><a href="#C-S-：可以理解为软件与服务端交互的东西" class="headerlink" title="C/S ：可以理解为软件与服务端交互的东西"></a>C/S ：可以理解为软件与服务端交互的东西</h5><h5 id="B-S-：-也就是浏览器和服务端交互的东西"><a href="#B-S-：-也就是浏览器和服务端交互的东西" class="headerlink" title="B/S ： 也就是浏览器和服务端交互的东西"></a>B/S ： 也就是浏览器和服务端交互的东西</h5><h5 id="HTML：-超文本标记语言"><a href="#HTML：-超文本标记语言" class="headerlink" title="HTML： 超文本标记语言"></a>HTML： 超文本标记语言</h5><h5 id="HTTP-超文本传输协议"><a href="#HTTP-超文本传输协议" class="headerlink" title="HTTP:  超文本传输协议"></a>HTTP:  超文本传输协议</h5><h5 id="XML-：-扩展性标记语言（结构化语言，常用于App多些）"><a href="#XML-：-扩展性标记语言（结构化语言，常用于App多些）" class="headerlink" title="XML ： 扩展性标记语言（结构化语言，常用于App多些）"></a>XML ： 扩展性标记语言（结构化语言，常用于App多些）</h5><h5 id="Session-：-会话-（从你打开网页到关闭网页一直存在的，相当于时间）"><a href="#Session-：-会话-（从你打开网页到关闭网页一直存在的，相当于时间）" class="headerlink" title="Session ： 会话 （从你打开网页到关闭网页一直存在的，相当于时间）"></a>Session ： 会话 （从你打开网页到关闭网页一直存在的，相当于时间）</h5><h5 id="cookie-相当于我们常用的身份证"><a href="#cookie-相当于我们常用的身份证" class="headerlink" title="cookie : 相当于我们常用的身份证"></a>cookie : 相当于我们常用的身份证</h5><h5 id="request-请求-向服务器发送一个请求，然后服务器会返回你一个response（响应）的包"><a href="#request-请求-向服务器发送一个请求，然后服务器会返回你一个response（响应）的包" class="headerlink" title="request(请求) : 向服务器发送一个请求，然后服务器会返回你一个response（响应）的包"></a>request(请求) : 向服务器发送一个请求，然后服务器会返回你一个response（响应）的包</h5><h5 id="forward-：-是服务器内部重定向，程序收到请求，重新定向到另一个程序，而客户URL不发生变化"><a href="#forward-：-是服务器内部重定向，程序收到请求，重新定向到另一个程序，而客户URL不发生变化" class="headerlink" title="forward ： 是服务器内部重定向，程序收到请求，重新定向到另一个程序，而客户URL不发生变化"></a>forward ： 是服务器内部重定向，程序收到请求，重新定向到另一个程序，而客户URL不发生变化</h5><h5 id="redirect：-是服务器收到请求后发送一个状态头给客户，客户将再次请求，就有两次通行的来往，并且对于cliet来说URL地址已经发生了改变，相当于302跳转。"><a href="#redirect：-是服务器收到请求后发送一个状态头给客户，客户将再次请求，就有两次通行的来往，并且对于cliet来说URL地址已经发生了改变，相当于302跳转。" class="headerlink" title="redirect： 是服务器收到请求后发送一个状态头给客户，客户将再次请求，就有两次通行的来往，并且对于cliet来说URL地址已经发生了改变，相当于302跳转。"></a>redirect： 是服务器收到请求后发送一个状态头给客户，客户将再次请求，就有两次通行的来往，并且对于cliet来说URL地址已经发生了改变，相当于302跳转。</h5><h2 id="Web组件："><a href="#Web组件：" class="headerlink" title="Web组件："></a>Web组件：</h2><h3 id="从内到外的一个详情："><a href="#从内到外的一个详情：" class="headerlink" title="从内到外的一个详情："></a>从内到外的一个详情：</h3><ul>
+<li>1.第三方内容 ：可以理解为广告统计那些，例如你插入的访问人数啊那些。</li>
+<li>2.Web前端框架：HTML、CSS、Jquery、Bootstrap、后面两个我暂时也不熟</li>
+<li>3.web应用：BBS、CMS、BLOG</li>
+<li>4.web开发框架：Thinkphp、Django、Rails</li>
+<li>5.web服务器语言：PHP、JSP、ASP.NET</li>
+<li>6.web容器：APACHE、IIS、NGINX</li>
+<li>7.存储：数据库存储、内存储存、文件储存</li>
+<li>8.操作系统：Linux、Windows</li>
+</ul>
+<blockquote>
+<p>说下内存储存可以理解为Js代码执行前会申请内存空间。</p>
+</blockquote>
+<h2 id="HTTP请求协议"><a href="#HTTP请求协议" class="headerlink" title="HTTP请求协议"></a>HTTP请求协议</h2><blockquote>
+<p>htpp协议是一个无状态的协议，意思也就是他一条响应对应一次请求，和上次请求没有关系，要发送request需要包含在一个请求里面，所以HTTP才会越请求URL越长。在Get一个点，HTTP协议是支持C/S的</p>
+</blockquote>
+<h3 id="URL"><a href="#URL" class="headerlink" title="URL:"></a>URL:</h3><ul>
+<li>“http:\host[“:”port[abs_path] //abs_path” 可以理解为URI</li>
+</ul>
+<h5 id="详情理解可以为我们请求网站的格式是：http-www-baidu-com-80-index-php"><a href="#详情理解可以为我们请求网站的格式是：http-www-baidu-com-80-index-php" class="headerlink" title="详情理解可以为我们请求网站的格式是：http://www.baidu.com:80/index.php"></a>详情理解可以为我们请求网站的格式是：<a href="http://www.baidu.com:80/index.php" target="_blank" rel="noopener">http://www.baidu.com:80/index.php</a></h5><h3 id="然后在说下TCP-IP所在的位置"><a href="#然后在说下TCP-IP所在的位置" class="headerlink" title="然后在说下TCP/IP所在的位置"></a>然后在说下TCP/IP所在的位置</h3><h3 id="应用层协议"><a href="#应用层协议" class="headerlink" title="应用层协议"></a>应用层协议</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">st&#x3D;&gt;start: HTTP TLS SSL</span><br><span class="line">op&#x3D;&gt;operation: TCP</span><br><span class="line">cond&#x3D;&gt;condition: IP</span><br><span class="line">e&#x3D;&gt;end: 数据链路层</span><br><span class="line"></span><br><span class="line">st-&gt;op-&gt;cond</span><br><span class="line">cond(yes)-&gt;e</span><br><span class="line">cond(no)-&gt;op</span><br><span class="line"></span><br><span class="line">&#96;&#96;&#96;&#96;&#96;&#96;&#96;&#96;&#96;&#96;&#96;&#96;&#96;&#96;&#96;&#96;&#96;&#96;</span><br></pre></td></tr></table></figure>
+</br>
+
+<blockquote>
+<p>这里说明下：当HTTP凌驾于TLS和SSL之上的时候他就变成了HTTPS</p>
+</blockquote>
+<h2 id="HTTP请求方法"><a href="#HTTP请求方法" class="headerlink" title="HTTP请求方法"></a>HTTP请求方法</h2><p><strong>HTTP请求协议一般分为三个部分</strong></p>
+<h5 id="请求头"><a href="#请求头" class="headerlink" title="请求头"></a>请求头</h5><h5 id="请求报文"><a href="#请求报文" class="headerlink" title="请求报文"></a>请求报文</h5><h5 id="请求正文"><a href="#请求正文" class="headerlink" title="请求正文"></a>请求正文</h5><h3 id="请求方法："><a href="#请求方法：" class="headerlink" title="请求方法："></a>请求方法：</h3><ul>
+<li>GET：请求URI标识的资源</li>
+<li>POST：在URI后面附加新的内容</li>
+<li>HEAD：请求URI响应资源的报头</li>
+<li>PUT：更新或者说修改一个资源</li>
+<li>DELETE：删除</li>
+<li>TRACE：请求消息，一般用来测试些链通性，或者说问题。</li>
+<li>CONNECT：保留</li>
+<li>OPTIONS： 请求服务器性能，与资源相关的选项</li>
+</ul>
+<h3 id="状态码"><a href="#状态码" class="headerlink" title="状态码"></a>状态码</h3><ul>
+<li>1开头：状态码一般表示指示信息，也就是还在处理中。</li>
+<li>2开头：表示请求成功，并且已经被理解，并且处理已经有结果</li>
+<li>3开头：表示重定向</li>
+<li>4开头：客户端错误，client请求无法实现，语法错误</li>
+<li>5开头：服务器内部错误，无法实现合法请求</li>
+</ul>
+<h3 id="常见状态码"><a href="#常见状态码" class="headerlink" title="常见状态码"></a>常见状态码</h3><ul>
+<li>200：请求成功</li>
+<li>301：永久性重定向</li>
+<li>302：暂时性重定向</li>
+<li>400：客户端语法错误，服务器无法理解</li>
+<li>401：请求未经授权</li>
+<li>403：请求收到但拒绝服务，或权限问题</li>
+<li>404：请求资源不存在</li>
+<li>500：服务器发生错误</li>
+<li>503：不能处理当前请求</li>
+</ul>
+<blockquote>
+<p>http /1.0 or http /1.1 的区别就在于1.0使用非持久性链接，一个TCP只传输一个对象，而1.1协议使用持久性链接，一个链接可以传输多个对象。</p>
+</blockquote>
+<h3 id="高层协议"><a href="#高层协议" class="headerlink" title="高层协议"></a>高层协议</h3><h5 id="这里要写的太多，我缩短介绍下，说下我个人理解，高层协议可以理解为有FTP、NNTP、HTTP、SMTP等。然后中间通讯有三种中间介组成："><a href="#这里要写的太多，我缩短介绍下，说下我个人理解，高层协议可以理解为有FTP、NNTP、HTTP、SMTP等。然后中间通讯有三种中间介组成：" class="headerlink" title="这里要写的太多，我缩短介绍下，说下我个人理解，高层协议可以理解为有FTP、NNTP、HTTP、SMTP等。然后中间通讯有三种中间介组成："></a>这里要写的太多，我缩短介绍下，说下我个人理解，高层协议可以理解为有FTP、NNTP、HTTP、SMTP等。然后中间通讯有三种中间介组成：</h5><ul>
+<li>代理（Proxy）</li>
+<li>网关（Gateway)</li>
+<li>通道（Tunnel)</li>
+</ul>
+<h5 id="一个代理根据URI的格式来接收请求，之后你可以重写全部或部分，然后通过URI的标识把已经格式化的请求，发到server，网关的话可以理解为接收代理请求的东西，把它当源服务器就很好理解了，之后通道也就是说，比如我访问你的网站，经过了HTPP请求，但当我访问到你的时候，请求却不限于HTTP，如果你熟悉链接流程就该知道的，通道可以这样理解：我去了你家，但是你家我们办法直接进去，需要把钥匙，而通道就是那把钥匙。"><a href="#一个代理根据URI的格式来接收请求，之后你可以重写全部或部分，然后通过URI的标识把已经格式化的请求，发到server，网关的话可以理解为接收代理请求的东西，把它当源服务器就很好理解了，之后通道也就是说，比如我访问你的网站，经过了HTPP请求，但当我访问到你的时候，请求却不限于HTTP，如果你熟悉链接流程就该知道的，通道可以这样理解：我去了你家，但是你家我们办法直接进去，需要把钥匙，而通道就是那把钥匙。" class="headerlink" title="一个代理根据URI的格式来接收请求，之后你可以重写全部或部分，然后通过URI的标识把已经格式化的请求，发到server，网关的话可以理解为接收代理请求的东西，把它当源服务器就很好理解了，之后通道也就是说，比如我访问你的网站，经过了HTPP请求，但当我访问到你的时候，请求却不限于HTTP，如果你熟悉链接流程就该知道的，通道可以这样理解：我去了你家，但是你家我们办法直接进去，需要把钥匙，而通道就是那把钥匙。"></a>一个代理根据URI的格式来接收请求，之后你可以重写全部或部分，然后通过URI的标识把已经格式化的请求，发到server，网关的话可以理解为接收代理请求的东西，把它当源服务器就很好理解了，之后通道也就是说，比如我访问你的网站，经过了HTPP请求，但当我访问到你的时候，请求却不限于HTTP，如果你熟悉链接流程就该知道的，通道可以这样理解：我去了你家，但是你家我们办法直接进去，需要把钥匙，而通道就是那把钥匙。</h5><blockquote>
+<p>写了许久 好累的感觉， 出去买包烟～～～</p>
+</blockquote>
+<h3 id="然后我们来说请求报文和响应报文是什么，都有什么。"><a href="#然后我们来说请求报文和响应报文是什么，都有什么。" class="headerlink" title="然后我们来说请求报文和响应报文是什么，都有什么。"></a>然后我们来说请求报文和响应报文是什么，都有什么。</h3><ul>
+<li>我先随便抓个包 就拿补天来做个测试：</li>
+</ul>
+<p><strong>这是请求包</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">GET / HTTP/<span class="number">1.1</span> <span class="comment">//请求方式 HTTP协议 </span></span><br><span class="line">Host: www.butian.net <span class="comment">//主域名</span></span><br><span class="line">User-Agent: Mozilla/<span class="number">5.0</span> (Windows NT <span class="number">6.1</span>; Win64; x64; rv:<span class="number">72.0</span>)  Gecko/<span class="number">20100101</span> Firefox/<span class="number">72.0</span> <span class="comment">//通过什么方式提交的</span></span><br><span class="line">Accept: text/html,application/xhtml+xml,application/xml;q=<span class="number">0.9</span>,image/webp,*<span class="comment">/*;q=0.8 //Accept 接收到意思 text/html 意味着采用html返回</span></span><br><span class="line"><span class="comment">Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2//语言</span></span><br><span class="line"><span class="comment">Accept-Encoding: gzip, deflate //接收什么编码</span></span><br><span class="line"><span class="comment">Connection: close //连接</span></span><br><span class="line"><span class="comment">Cookie: PHPSESSID=lacmnh3o7jj982ka59cj0l4944; __q__=1581140814738  /身份证啊</span></span><br><span class="line"><span class="comment">Upgrade-Insecure-Requests: 1  //没啥用，好像是升级不安全的请求，忽略</span></span><br></pre></td></tr></table></figure>
+<p><strong>这是响应包</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">HTTP/<span class="number">1.1</span> <span class="number">200</span> OK <span class="comment">//超文本传输协议 200状态码</span></span><br><span class="line"><span class="built_in">Date</span>: Sat, <span class="number">08</span> Feb <span class="number">2020</span> <span class="number">05</span>:<span class="number">55</span>:<span class="number">06</span> GMT <span class="comment">//时间</span></span><br><span class="line">Content-Type: text/html; charset=utf<span class="number">-8</span> <span class="comment">//连接采用的类型为html charset字符集为utf-8</span></span><br><span class="line">Connection: close  <span class="comment">//连接关闭 也就是传输完成了</span></span><br><span class="line">X-Powered-By: anyu.qianxin.com <span class="comment">//采用啥语言或者框架，很显然被修改过了</span></span><br><span class="line">Vary: Accept-Encoding <span class="comment">//没啥用 同上编码的</span></span><br><span class="line">Expires: Thu, <span class="number">19</span> Nov <span class="number">1981</span> <span class="number">08</span>:<span class="number">52</span>:<span class="number">00</span> GMT <span class="comment">//时间</span></span><br><span class="line">Pragma: no-cache <span class="comment">//这里就是说不能被缓存 No-cache 也就是每次都会重新访问</span></span><br><span class="line"><span class="built_in">Set</span>-Cookie: __q__=<span class="number">1581141306099</span>; path=<span class="regexp">/; domain=butian.net; secure; httponly </span></span><br><span class="line"><span class="regexp">Cache-control: private /</span><span class="regexp">/内容只缓存到私有缓存中(仅客户端可以缓存，代理服务器不可缓存)</span></span><br><span class="line"><span class="regexp">X-Powered-By: BUTIAN  /</span><span class="regexp">/做了waf </span></span><br><span class="line"><span class="regexp">Strict-Transport-Security: max-age=15768000</span></span><br><span class="line"><span class="regexp">Server: qianxin-waf /</span><span class="regexp">/服务器</span></span><br><span class="line"><span class="regexp">WZWS-RAY: 1121-1581170106.169-waf02fst /</span><span class="regexp">/看不懂 估计是内部啥</span></span><br><span class="line"><span class="regexp">Content-Length: 75651 /</span><span class="regexp">/内容长度</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>下次再见啦～～</p>
+</blockquote>
+
+  </div>
+</article>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="https://github.com/cuzakali" target="_blank" rel="noopener">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Web安全协议篇"><span class="toc-number">1.</span> <span class="toc-text">Web安全协议篇</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Web理论知识"><span class="toc-number">1.1.</span> <span class="toc-text">Web理论知识</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#流程图"><span class="toc-number">1.1.1.</span> <span class="toc-text">流程图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#流程图-1"><span class="toc-number">1.1.2.</span> <span class="toc-text">流程图</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#然后再来说下Web的发展史："><span class="toc-number">1.2.</span> <span class="toc-text">然后再来说下Web的发展史：</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#这就不绘图了，要不显得有点敷衍～～早期的发展我的理解是从静态页面（Html-，到CGI-之后是javascript（JS），然后就是各种各样的了，例PHP啊跨时代的东西嘛，然后asp-net，JSP啊，我的理解只到此为止了，因为我对这方面不太敢兴趣，所以没有深入。"><span class="toc-number">1.2.0.0.1.</span> <span class="toc-text">这就不绘图了，要不显得有点敷衍～～早期的发展我的理解是从静态页面（Html)，到CGI,之后是javascript（JS），然后就是各种各样的了，例PHP啊跨时代的东西嘛，然后asp.net，JSP啊，我的理解只到此为止了，因为我对这方面不太敢兴趣，所以没有深入。</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Web术语"><span class="toc-number">1.3.</span> <span class="toc-text">Web术语</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#刷新：-在网站现有的基础上检查网页是否有更新内容，在检查时会保留一些变量的值。"><span class="toc-number">1.3.0.0.1.</span> <span class="toc-text">刷新： 在网站现有的基础上检查网页是否有更新内容，在检查时会保留一些变量的值。</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#转到：相当于是在地址栏中重新输入网页的URL访问，浏览器会尽量使用已经存在的缓存。（缓存可以有多种，例如cookie）"><span class="toc-number">1.3.0.0.2.</span> <span class="toc-text">转到：相当于是在地址栏中重新输入网页的URL访问，浏览器会尽量使用已经存在的缓存。（缓存可以有多种，例如cookie）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#C-S-：可以理解为软件与服务端交互的东西"><span class="toc-number">1.3.0.0.3.</span> <span class="toc-text">C&#x2F;S ：可以理解为软件与服务端交互的东西</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#B-S-：-也就是浏览器和服务端交互的东西"><span class="toc-number">1.3.0.0.4.</span> <span class="toc-text">B&#x2F;S ： 也就是浏览器和服务端交互的东西</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#HTML：-超文本标记语言"><span class="toc-number">1.3.0.0.5.</span> <span class="toc-text">HTML： 超文本标记语言</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#HTTP-超文本传输协议"><span class="toc-number">1.3.0.0.6.</span> <span class="toc-text">HTTP:  超文本传输协议</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#XML-：-扩展性标记语言（结构化语言，常用于App多些）"><span class="toc-number">1.3.0.0.7.</span> <span class="toc-text">XML ： 扩展性标记语言（结构化语言，常用于App多些）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Session-：-会话-（从你打开网页到关闭网页一直存在的，相当于时间）"><span class="toc-number">1.3.0.0.8.</span> <span class="toc-text">Session ： 会话 （从你打开网页到关闭网页一直存在的，相当于时间）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#cookie-相当于我们常用的身份证"><span class="toc-number">1.3.0.0.9.</span> <span class="toc-text">cookie : 相当于我们常用的身份证</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#request-请求-向服务器发送一个请求，然后服务器会返回你一个response（响应）的包"><span class="toc-number">1.3.0.0.10.</span> <span class="toc-text">request(请求) : 向服务器发送一个请求，然后服务器会返回你一个response（响应）的包</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#forward-：-是服务器内部重定向，程序收到请求，重新定向到另一个程序，而客户URL不发生变化"><span class="toc-number">1.3.0.0.11.</span> <span class="toc-text">forward ： 是服务器内部重定向，程序收到请求，重新定向到另一个程序，而客户URL不发生变化</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#redirect：-是服务器收到请求后发送一个状态头给客户，客户将再次请求，就有两次通行的来往，并且对于cliet来说URL地址已经发生了改变，相当于302跳转。"><span class="toc-number">1.3.0.0.12.</span> <span class="toc-text">redirect： 是服务器收到请求后发送一个状态头给客户，客户将再次请求，就有两次通行的来往，并且对于cliet来说URL地址已经发生了改变，相当于302跳转。</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Web组件："><span class="toc-number">1.4.</span> <span class="toc-text">Web组件：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#从内到外的一个详情："><span class="toc-number">1.4.1.</span> <span class="toc-text">从内到外的一个详情：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTP请求协议"><span class="toc-number">1.5.</span> <span class="toc-text">HTTP请求协议</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#URL"><span class="toc-number">1.5.1.</span> <span class="toc-text">URL:</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#详情理解可以为我们请求网站的格式是：http-www-baidu-com-80-index-php"><span class="toc-number">1.5.1.0.1.</span> <span class="toc-text">详情理解可以为我们请求网站的格式是：http:&#x2F;&#x2F;www.baidu.com:80&#x2F;index.php</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#然后在说下TCP-IP所在的位置"><span class="toc-number">1.5.2.</span> <span class="toc-text">然后在说下TCP&#x2F;IP所在的位置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#应用层协议"><span class="toc-number">1.5.3.</span> <span class="toc-text">应用层协议</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTP请求方法"><span class="toc-number">1.6.</span> <span class="toc-text">HTTP请求方法</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#请求头"><span class="toc-number">1.6.0.0.1.</span> <span class="toc-text">请求头</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#请求报文"><span class="toc-number">1.6.0.0.2.</span> <span class="toc-text">请求报文</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#请求正文"><span class="toc-number">1.6.0.0.3.</span> <span class="toc-text">请求正文</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#请求方法："><span class="toc-number">1.6.1.</span> <span class="toc-text">请求方法：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#状态码"><span class="toc-number">1.6.2.</span> <span class="toc-text">状态码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#常见状态码"><span class="toc-number">1.6.3.</span> <span class="toc-text">常见状态码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#高层协议"><span class="toc-number">1.6.4.</span> <span class="toc-text">高层协议</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#这里要写的太多，我缩短介绍下，说下我个人理解，高层协议可以理解为有FTP、NNTP、HTTP、SMTP等。然后中间通讯有三种中间介组成："><span class="toc-number">1.6.4.0.1.</span> <span class="toc-text">这里要写的太多，我缩短介绍下，说下我个人理解，高层协议可以理解为有FTP、NNTP、HTTP、SMTP等。然后中间通讯有三种中间介组成：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#一个代理根据URI的格式来接收请求，之后你可以重写全部或部分，然后通过URI的标识把已经格式化的请求，发到server，网关的话可以理解为接收代理请求的东西，把它当源服务器就很好理解了，之后通道也就是说，比如我访问你的网站，经过了HTPP请求，但当我访问到你的时候，请求却不限于HTTP，如果你熟悉链接流程就该知道的，通道可以这样理解：我去了你家，但是你家我们办法直接进去，需要把钥匙，而通道就是那把钥匙。"><span class="toc-number">1.6.4.0.2.</span> <span class="toc-text">一个代理根据URI的格式来接收请求，之后你可以重写全部或部分，然后通过URI的标识把已经格式化的请求，发到server，网关的话可以理解为接收代理请求的东西，把它当源服务器就很好理解了，之后通道也就是说，比如我访问你的网站，经过了HTPP请求，但当我访问到你的时候，请求却不限于HTTP，如果你熟悉链接流程就该知道的，通道可以这样理解：我去了你家，但是你家我们办法直接进去，需要把钥匙，而通道就是那把钥匙。</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#然后我们来说请求报文和响应报文是什么，都有什么。"><span class="toc-number">1.6.5.</span> <span class="toc-text">然后我们来说请求报文和响应报文是什么，都有什么。</span></a></li></ol></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2020/02/08/akali-s-web-road-01/" target="_blank" rel="noopener"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2020/02/08/akali-s-web-road-01/&text=akali&#39;s web road 01" target="_blank" rel="noopener"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2020/02/08/akali-s-web-road-01/&title=akali&#39;s web road 01" target="_blank" rel="noopener"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2020/02/08/akali-s-web-road-01/&is_video=false&description=akali&#39;s web road 01" target="_blank" rel="noopener"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=akali&#39;s web road 01&body=Check out this article: http://yoursite.com/2020/02/08/akali-s-web-road-01/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2020/02/08/akali-s-web-road-01/&title=akali&#39;s web road 01" target="_blank" rel="noopener"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2020/02/08/akali-s-web-road-01/&title=akali&#39;s web road 01" target="_blank" rel="noopener"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2020/02/08/akali-s-web-road-01/&title=akali&#39;s web road 01" target="_blank" rel="noopener"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2020/02/08/akali-s-web-road-01/&title=akali&#39;s web road 01" target="_blank" rel="noopener"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2020/02/08/akali-s-web-road-01/&name=akali&#39;s web road 01&description=" target="_blank" rel="noopener"><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick='$("#toc-footer").toggle();return false;'><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick='$("#share-footer").toggle();return false;'><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick='$("#nav-footer").toggle();return false;'><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2020 John Doe
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="https://github.com/cuzakali" target="_blank" rel="noopener">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+
+
+<link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
+
+
+
+<!-- jquery -->
+
+<script src="/lib/jquery/jquery.min.js"></script>
+
+
+<script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- Google Analytics -->
+
+    <script type="text/javascript">
+        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-86660611-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+<!-- Disqus Comments -->
+
+
