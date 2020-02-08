@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="Web安全的一个抉择很早之前我一直纠结于是渗透测试还是恶意样本分析，直到今日，我用了一个愚蠢的办法，进行了我人生中的一个抉择，＂投篮＂，很滑稽，但也非常有用！     那么我需要整理下我自己的知识点，就从信息收集开始吧，也算给自己屡一下思路，有不足之处，还望师傅指出下，当然有什么好的思路，我也会在接下来的文章中分享出来，与君共勉！ 信息收集信息收集可利用与更好的攻击，比如你在搜索引擎中发现了他的后">
+<meta property="og:type" content="article">
+<meta property="og:title" content="akali&#39;s web road 00">
+<meta property="og:url" content="http://yoursite.com/2020/02/08/akali's%20web%20road%2000/index.html">
+<meta property="og:site_name" content="akali&#39; blog">
+<meta property="og:description" content="Web安全的一个抉择很早之前我一直纠结于是渗透测试还是恶意样本分析，直到今日，我用了一个愚蠢的办法，进行了我人生中的一个抉择，＂投篮＂，很滑稽，但也非常有用！     那么我需要整理下我自己的知识点，就从信息收集开始吧，也算给自己屡一下思路，有不足之处，还望师傅指出下，当然有什么好的思路，我也会在接下来的文章中分享出来，与君共勉！ 信息收集信息收集可利用与更好的攻击，比如你在搜索引擎中发现了他的后">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://hbimg.b0.upaiyun.com/f698c765c898ab4ce357126b9bdd20b1a448bc2f8764c-6NnBVZ_fw658">
+<meta property="og:image" content="https://akali.me/images/20202201.jpg">
+<meta property="article:published_time" content="2020-02-08T03:32:17.088Z">
+<meta property="article:modified_time" content="2020-02-08T04:03:42.134Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://hbimg.b0.upaiyun.com/f698c765c898ab4ce357126b9bdd20b1a448bc2f8764c-6NnBVZ_fw658">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>akali&#39;s web road 00</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- rss -->
+    
+    
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="https://github.com/cuzakali" target="_blank" rel="noopener">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();' onclick='$("#share").toggle();return false;'></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2020/02/08/akali&#39;s%20web%20road%2000/" target="_blank" rel="noopener"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2020/02/08/akali&#39;s%20web%20road%2000/&text=akali&#39;s web road 00" target="_blank" rel="noopener"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2020/02/08/akali&#39;s%20web%20road%2000/&title=akali&#39;s web road 00" target="_blank" rel="noopener"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2020/02/08/akali&#39;s%20web%20road%2000/&is_video=false&description=akali&#39;s web road 00" target="_blank" rel="noopener"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=akali&#39;s web road 00&body=Check out this article: http://yoursite.com/2020/02/08/akali&#39;s%20web%20road%2000/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2020/02/08/akali&#39;s%20web%20road%2000/&title=akali&#39;s web road 00" target="_blank" rel="noopener"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2020/02/08/akali&#39;s%20web%20road%2000/&title=akali&#39;s web road 00" target="_blank" rel="noopener"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2020/02/08/akali&#39;s%20web%20road%2000/&title=akali&#39;s web road 00" target="_blank" rel="noopener"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2020/02/08/akali&#39;s%20web%20road%2000/&title=akali&#39;s web road 00" target="_blank" rel="noopener"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2020/02/08/akali&#39;s%20web%20road%2000/&name=akali&#39;s web road 00&description=" target="_blank" rel="noopener"><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Web安全的一个抉择"><span class="toc-number">1.</span> <span class="toc-text">Web安全的一个抉择</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#信息收集"><span class="toc-number">1.1.</span> <span class="toc-text">信息收集</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#接下来就谈谈信息收集的思路"><span class="toc-number">1.2.</span> <span class="toc-text">接下来就谈谈信息收集的思路</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#通常信息收集常用到的有：子域名爆破以及爬取、网站CMS识别、网站目录爆破以及爬取、在就是邮箱手机敏感信息的收集，whios以及业务的流程，关于业务流程我建议大家画图，因为目前网站业务都挺多的，这里推荐大家使用processon有现成的一些画图模块等。"><span class="toc-number">1.2.0.0.1.</span> <span class="toc-text">通常信息收集常用到的有：子域名爆破以及爬取、网站CMS识别、网站目录爆破以及爬取、在就是邮箱手机敏感信息的收集，whios以及业务的流程，关于业务流程我建议大家画图，因为目前网站业务都挺多的，这里推荐大家使用processon有现成的一些画图模块等。</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#下面介绍一些搜索语法"><span class="toc-number">1.2.1.</span> <span class="toc-text">下面介绍一些搜索语法</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#intitle：-搜索我们感兴趣的标题：管理-login-系统inurl：-搜索我们感兴趣的URL：比如id，又比如admin，甚至password重置密码链接等，intext-搜索指定的字符，比如邮箱，手机，联系方式等Filetype：搜索指定类型结尾的url-例如admin那么他将搜索admin结尾的URLSite：这个很常用到了，就是返回你输入的域名旗下所有有关的页面了解了Google的基本语法后，我们来看一下如何使用这些语法进行Google-Hack的，这些语法在渗透的过程中又会起到怎样的作用呢？"><span class="toc-number">1.2.1.0.1.</span> <span class="toc-text">intitle： 搜索我们感兴趣的标题：管理 login 系统inurl： 搜索我们感兴趣的URL：比如id，又比如admin，甚至password重置密码链接等，intext: 搜索指定的字符，比如邮箱，手机，联系方式等Filetype：搜索指定类型结尾的url 例如admin那么他将搜索admin结尾的URLSite：这个很常用到了，就是返回你输入的域名旗下所有有关的页面了解了Google的基本语法后，我们来看一下如何使用这些语法进行Google Hack的，这些语法在渗透的过程中又会起到怎样的作用呢？</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#intitle"><span class="toc-number">1.2.2.</span> <span class="toc-text">intitle</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#intitle语法通常被用来搜索网站的后台、特殊页面和文件，通过在Google中搜索“intitle-登录”、“intitle-管理”就可以找到很多网站的后台登录页面。此外，intitle语法还可以被用在搜索文件上，例如搜索“intitle-”indexof”etc-shadow”就可以找到Linux中因为配置不合理而泄露出来的用户密码文件。"><span class="toc-number">1.2.2.0.1.</span> <span class="toc-text">intitle语法通常被用来搜索网站的后台、特殊页面和文件，通过在Google中搜索“intitle:登录”、“intitle:管理”就可以找到很多网站的后台登录页面。此外，intitle语法还可以被用在搜索文件上，例如搜索“intitle:”indexof”etc&#x2F;shadow”就可以找到Linux中因为配置不合理而泄露出来的用户密码文件。</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#inurl"><span class="toc-number">1.2.3.</span> <span class="toc-text">inurl</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Google中，inurl发挥的作用的最大，主要可以分为以下两个方面-寻找网站后台登录地址，搜索特殊URL。"><span class="toc-number">1.2.3.0.1.</span> <span class="toc-text">Google中，inurl发挥的作用的最大，主要可以分为以下两个方面:寻找网站后台登录地址，搜索特殊URL。</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#搜索特殊URL：通过inurl语法搜索特殊URL，我们可以找到很多网站程序的漏洞，例如最早IIS中的Uncode目录遍历漏洞，我们可以构造“inurl-／winnt／system32／cmd-exe-／c-dir”这样的关键字进行搜索，不过目前要搜索到存在这种古董漏洞的网站是比较困难的。再比如前段日子很火的上传漏洞，我们使用““inurl-upload-asp”或“inurl-upload-soft-asp”即可找到很多上传页面，此时再用工具进行木马上传就可以。"><span class="toc-number">1.2.3.0.2.</span> <span class="toc-text">搜索特殊URL：通过inurl语法搜索特殊URL，我们可以找到很多网站程序的漏洞，例如最早IIS中的Uncode目录遍历漏洞，我们可以构造“inurl:／winnt／system32／cmd exe?／c+dir”这样的关键字进行搜索，不过目前要搜索到存在这种古董漏洞的网站是比较困难的。再比如前段日子很火的上传漏洞，我们使用““inurl:upload.asp”或“inurl:upload_soft.asp”即可找到很多上传页面，此时再用工具进行木马上传就可以。</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#intext"><span class="toc-number">1.2.4.</span> <span class="toc-text">intext</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#intext的作用是搜索网页中的指定字符，这貌似在Google中没有什么作用，不过在以“intext-to-parent-directory”为关键字进行搜索后，我们会很惊奇的发现，无数网站的目录暴露在我们眼前。我们可以在其中随意切换目录，浏览文件，就像拥有了一个简单的Webshell。形成这种现象的原因是由于IIS的配置疏忽。同样，中文IIS配置疏忽也可能出现类似的漏洞，我们用“intext-转到父目录”就可以找到很多有漏洞的中文网站。"><span class="toc-number">1.2.4.0.1.</span> <span class="toc-text">intext的作用是搜索网页中的指定字符，这貌似在Google中没有什么作用，不过在以“intext:to parent directory”为关键字进行搜索后，我们会很惊奇的发现，无数网站的目录暴露在我们眼前。我们可以在其中随意切换目录，浏览文件，就像拥有了一个简单的Webshell。形成这种现象的原因是由于IIS的配置疏忽。同样，中文IIS配置疏忽也可能出现类似的漏洞，我们用“intext:转到父目录”就可以找到很多有漏洞的中文网站。</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#filetype"><span class="toc-number">1.2.5.</span> <span class="toc-text">filetype</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Filetype的作用是搜索指定文件。假如我们要搜索网站的数据库文件，那么可以以“filetype-mdb”为关键字进行搜索，很快就可以下载到不少网站的数据库文件。当然，Filetype语法的作用不仅于此，在和其他语法配合使用的时候更能显示出其强大作用。"><span class="toc-number">1.2.5.0.1.</span> <span class="toc-text">Filetype的作用是搜索指定文件。假如我们要搜索网站的数据库文件，那么可以以“filetype:mdb”为关键字进行搜索，很快就可以下载到不少网站的数据库文件。当然，Filetype语法的作用不仅于此，在和其他语法配合使用的时候更能显示出其强大作用。</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Site"><span class="toc-number">1.2.6.</span> <span class="toc-text">Site</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#黑客使用Site，通常都是做渗透前的信息刺探。Site语法可以显示所有和目标网站有联系的页面，从中或多或少存在一些关于目标网站的资料，这对于黑客而言就是渗透的突破口，是关于目标网站的一份详尽的报告。"><span class="toc-number">1.2.6.0.1.</span> <span class="toc-text">黑客使用Site，通常都是做渗透前的信息刺探。Site语法可以显示所有和目标网站有联系的页面，从中或多或少存在一些关于目标网站的资料，这对于黑客而言就是渗透的突破口，是关于目标网站的一份详尽的报告。</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#语法组合，威力加倍"><span class="toc-number">2.</span> <span class="toc-text">语法组合，威力加倍</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#虽然上文中介绍的这几个语法能各自完成渗透中的一些步骤，但是只使用一个语法进行渗透，其效率是很低下的。Google的威力在于能将多个语法组合起来，这样就可以快速地找到我们需要的东西。下面我们来模拟黑客是如何使用Google语法组合来渗透一个网站的。"><span class="toc-number">2.0.0.0.1.</span> <span class="toc-text">虽然上文中介绍的这几个语法能各自完成渗透中的一些步骤，但是只使用一个语法进行渗透，其效率是很低下的。Google的威力在于能将多个语法组合起来，这样就可以快速地找到我们需要的东西。下面我们来模拟黑客是如何使用Google语法组合来渗透一个网站的。</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#信息刺探"><span class="toc-number">2.0.1.</span> <span class="toc-text">信息刺探</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#想检测一个网站，通常第一步都是对目标网站进行信息刺探。这时可以使用“Site-目标网站”来获取相关网页，从中提取有用的资料。"><span class="toc-number">2.0.1.0.0.1.</span> <span class="toc-text">想检测一个网站，通常第一步都是对目标网站进行信息刺探。这时可以使用“Site:目标网站”来获取相关网页，从中提取有用的资料。</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#搜索相关页面"><span class="toc-number">2.0.2.</span> <span class="toc-text">搜索相关页面</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#下载网站的数据库搜索“Site-目标网站-Filetype-mdb”就可以寻找目标网站的数据库，其中的Site语法限定搜索范围，Filetype决定搜索目标。用这种方法有一个缺点，就是下载到数据库的成功率较低。在这里我们还可以采用另一种语法组合，前提是目标网站存在IIS配置缺陷，即可以随意浏览站点文件夹，我们搜索“Site-目标网站-intext-to-parent-directory”来确定其是否存在此漏洞。在确定漏洞存在后，可以使用“Site-目标网站-intext-to-parent-directory-intext-mdb”进行数据库的搜索。"><span class="toc-number">2.0.2.0.1.</span> <span class="toc-text">下载网站的数据库搜索“Site:目标网站 Filetype:mdb”就可以寻找目标网站的数据库，其中的Site语法限定搜索范围，Filetype决定搜索目标。用这种方法有一个缺点，就是下载到数据库的成功率较低。在这里我们还可以采用另一种语法组合，前提是目标网站存在IIS配置缺陷，即可以随意浏览站点文件夹，我们搜索“Site:目标网站 intext:to parent directory”来确定其是否存在此漏洞。在确定漏洞存在后，可以使用“Site:目标网站 intext:to parent directory+intext.mdb”进行数据库的搜索。</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#找到网站数据库"><span class="toc-number">2.0.3.</span> <span class="toc-text">找到网站数据库</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#登录后台管理下载到数据库后，我们就可以从中找到网站的管理员帐户和密码，并登录网站的后台。对于网站后台的查找，可以使用语法组合“Site-目标网站-intitle-管理”或者“Site-目标网站-inurl-login-asp”进行搜索，当然我们可以在这里进行联想以不同的字符进行搜索，这样就有很大的概率可以找到网站的后台管理地址。接下去就可以在后台上传Webshll，进一步提升权限，在此不再阐述。利用其他漏洞如果下载数据库不成功，我们还可以尝试其他的检测方法。例如寻找上传漏洞，搜索“Site-目标网站-inurl-upload-asp”。此外，我们还可以根据一些程序漏洞的特征，定制出Google的语句。"><span class="toc-number">2.0.3.0.1.</span> <span class="toc-text">登录后台管理下载到数据库后，我们就可以从中找到网站的管理员帐户和密码，并登录网站的后台。对于网站后台的查找，可以使用语法组合“Site:目标网站 intitle:管理”或者“Site:目标网站 inurl:login.asp”进行搜索，当然我们可以在这里进行联想以不同的字符进行搜索，这样就有很大的概率可以找到网站的后台管理地址。接下去就可以在后台上传Webshll，进一步提升权限，在此不再阐述。利用其他漏洞如果下载数据库不成功，我们还可以尝试其他的检测方法。例如寻找上传漏洞，搜索“Site:目标网站 inurl:upload.asp”。此外，我们还可以根据一些程序漏洞的特征，定制出Google的语句。</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#小知识点：robots-txt文件中可能会包含网站的目录结构"><span class="toc-number">2.0.3.1.</span> <span class="toc-text">小知识点：robots.txt文件中可能会包含网站的目录结构</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#以上知识点有参阅于：shangjingxiaowu（嘿嘿，其实我对语法也遗忘的差不多了～～～！，这下好了给我复习过来了）也可以看下这篇文章，渗透测试之信息收集（一），有详细介绍，因为有类似的了…-！！其实我还想写下去的，但我问了下大大，他告诉我说，我在写下去要么就写渗透过程，而我比较水…泪奔-参考资料："><span class="toc-number">2.0.3.1.1.</span> <span class="toc-text">以上知识点有参阅于：shangjingxiaowu（嘿嘿，其实我对语法也遗忘的差不多了～～～！，这下好了给我复习过来了）也可以看下这篇文章，渗透测试之信息收集（一），有详细介绍，因为有类似的了….！！其实我还想写下去的，但我问了下大大，他告诉我说，我在写下去要么就写渗透过程，而我比较水…泪奔~参考资料：</span></a></li></ol></li></ol></li></ol></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index width mx-auto px2 my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        akali&#39;s web road 00
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">akali' blog</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2020-02-08T03:32:17.088Z" itemprop="datePublished">2020-02-08</time>
+    </div>
+
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h1 id="Web安全的一个抉择"><a href="#Web安全的一个抉择" class="headerlink" title="Web安全的一个抉择"></a>Web安全的一个抉择</h1><p><strong>很早之前我一直纠结于是渗透测试还是恶意样本分析，直到今日，我用了一个愚蠢的办法，进行了我人生中的一个抉择，＂投篮＂，很滑稽，但也非常有用！</strong></p>
+<img src="http://hbimg.b0.upaiyun.com/f698c765c898ab4ce357126b9bdd20b1a448bc2f8764c-6NnBVZ_fw658" width = "300" height = "300" />
+
+
+
+<p>那么我需要整理下我自己的知识点，就从信息收集开始吧，也算给自己屡一下思路，有不足之处，还望师傅指出下，当然有什么好的思路，我也会在接下来的文章中分享出来，与君共勉！</p>
+<h2 id="信息收集"><a href="#信息收集" class="headerlink" title="信息收集"></a>信息收集</h2><p><em>信息收集可利用与更好的攻击，比如你在搜索引擎中发现了他的后台，又比如你在目录中发现了他的源码，所以我一直相信老师们的一句话，渗透过程中你信息收集的越仔细，那么结果就会越可观</em></p>
+<blockquote>
+<p>接下来就介绍一下信息收集常用的一些工具和网站。</p>
+</blockquote>
+<p>首先就介绍位大大的博客Lcy，他的博客里面提供了在线工具有子域名爆破，以及一些C段旁站获取Ip等等，当然博客中写到的一些思路也值得学习，比如修复御剑旁注查询接口等。</p>
+<p><img src="https://akali.me/images/20202201.jpg" alt="Pandao editor.md" title="Pandao editor.md"></p>
+<h2 id="接下来就谈谈信息收集的思路"><a href="#接下来就谈谈信息收集的思路" class="headerlink" title="接下来就谈谈信息收集的思路"></a>接下来就谈谈信息收集的思路</h2><h5 id="通常信息收集常用到的有：子域名爆破以及爬取、网站CMS识别、网站目录爆破以及爬取、在就是邮箱手机敏感信息的收集，whios以及业务的流程，关于业务流程我建议大家画图，因为目前网站业务都挺多的，这里推荐大家使用processon有现成的一些画图模块等。"><a href="#通常信息收集常用到的有：子域名爆破以及爬取、网站CMS识别、网站目录爆破以及爬取、在就是邮箱手机敏感信息的收集，whios以及业务的流程，关于业务流程我建议大家画图，因为目前网站业务都挺多的，这里推荐大家使用processon有现成的一些画图模块等。" class="headerlink" title="通常信息收集常用到的有：子域名爆破以及爬取、网站CMS识别、网站目录爆破以及爬取、在就是邮箱手机敏感信息的收集，whios以及业务的流程，关于业务流程我建议大家画图，因为目前网站业务都挺多的，这里推荐大家使用processon有现成的一些画图模块等。"></a>通常信息收集常用到的有：子域名爆破以及爬取、网站CMS识别、网站目录爆破以及爬取、在就是邮箱手机敏感信息的收集，whios以及业务的流程，关于业务流程我建议大家画图，因为目前网站业务都挺多的，这里推荐大家使用processon有现成的一些画图模块等。</h5><h3 id="下面介绍一些搜索语法"><a href="#下面介绍一些搜索语法" class="headerlink" title="下面介绍一些搜索语法"></a>下面介绍一些搜索语法</h3><h5 id="intitle：-搜索我们感兴趣的标题：管理-login-系统inurl：-搜索我们感兴趣的URL：比如id，又比如admin，甚至password重置密码链接等，intext-搜索指定的字符，比如邮箱，手机，联系方式等Filetype：搜索指定类型结尾的url-例如admin那么他将搜索admin结尾的URLSite：这个很常用到了，就是返回你输入的域名旗下所有有关的页面了解了Google的基本语法后，我们来看一下如何使用这些语法进行Google-Hack的，这些语法在渗透的过程中又会起到怎样的作用呢？"><a href="#intitle：-搜索我们感兴趣的标题：管理-login-系统inurl：-搜索我们感兴趣的URL：比如id，又比如admin，甚至password重置密码链接等，intext-搜索指定的字符，比如邮箱，手机，联系方式等Filetype：搜索指定类型结尾的url-例如admin那么他将搜索admin结尾的URLSite：这个很常用到了，就是返回你输入的域名旗下所有有关的页面了解了Google的基本语法后，我们来看一下如何使用这些语法进行Google-Hack的，这些语法在渗透的过程中又会起到怎样的作用呢？" class="headerlink" title="intitle： 搜索我们感兴趣的标题：管理 login 系统inurl： 搜索我们感兴趣的URL：比如id，又比如admin，甚至password重置密码链接等，intext: 搜索指定的字符，比如邮箱，手机，联系方式等Filetype：搜索指定类型结尾的url 例如admin那么他将搜索admin结尾的URLSite：这个很常用到了，就是返回你输入的域名旗下所有有关的页面了解了Google的基本语法后，我们来看一下如何使用这些语法进行Google Hack的，这些语法在渗透的过程中又会起到怎样的作用呢？"></a>intitle： 搜索我们感兴趣的标题：管理 login 系统inurl： 搜索我们感兴趣的URL：比如id，又比如admin，甚至password重置密码链接等，intext: 搜索指定的字符，比如邮箱，手机，联系方式等Filetype：搜索指定类型结尾的url 例如admin那么他将搜索admin结尾的URLSite：这个很常用到了，就是返回你输入的域名旗下所有有关的页面了解了Google的基本语法后，我们来看一下如何使用这些语法进行Google Hack的，这些语法在渗透的过程中又会起到怎样的作用呢？</h5><h3 id="intitle"><a href="#intitle" class="headerlink" title="intitle"></a>intitle</h3><h5 id="intitle语法通常被用来搜索网站的后台、特殊页面和文件，通过在Google中搜索“intitle-登录”、“intitle-管理”就可以找到很多网站的后台登录页面。此外，intitle语法还可以被用在搜索文件上，例如搜索“intitle-”indexof”etc-shadow”就可以找到Linux中因为配置不合理而泄露出来的用户密码文件。"><a href="#intitle语法通常被用来搜索网站的后台、特殊页面和文件，通过在Google中搜索“intitle-登录”、“intitle-管理”就可以找到很多网站的后台登录页面。此外，intitle语法还可以被用在搜索文件上，例如搜索“intitle-”indexof”etc-shadow”就可以找到Linux中因为配置不合理而泄露出来的用户密码文件。" class="headerlink" title="intitle语法通常被用来搜索网站的后台、特殊页面和文件，通过在Google中搜索“intitle:登录”、“intitle:管理”就可以找到很多网站的后台登录页面。此外，intitle语法还可以被用在搜索文件上，例如搜索“intitle:”indexof”etc/shadow”就可以找到Linux中因为配置不合理而泄露出来的用户密码文件。"></a>intitle语法通常被用来搜索网站的后台、特殊页面和文件，通过在Google中搜索“intitle:登录”、“intitle:管理”就可以找到很多网站的后台登录页面。此外，intitle语法还可以被用在搜索文件上，例如搜索“intitle:”indexof”etc/shadow”就可以找到Linux中因为配置不合理而泄露出来的用户密码文件。</h5><h3 id="inurl"><a href="#inurl" class="headerlink" title="inurl"></a>inurl</h3><h5 id="Google中，inurl发挥的作用的最大，主要可以分为以下两个方面-寻找网站后台登录地址，搜索特殊URL。"><a href="#Google中，inurl发挥的作用的最大，主要可以分为以下两个方面-寻找网站后台登录地址，搜索特殊URL。" class="headerlink" title="Google中，inurl发挥的作用的最大，主要可以分为以下两个方面:寻找网站后台登录地址，搜索特殊URL。"></a>Google中，inurl发挥的作用的最大，主要可以分为以下两个方面:寻找网站后台登录地址，搜索特殊URL。</h5><blockquote>
+<p>寻找网站后台登录地址：和intitle不同的是，inurl可以指定URL中的关键字，我们都知道网站的后台URL都是类似login.asp、admin.asp为结尾的，那么我们只要以“inurl:login.asp”、“inurl:admin.asp”为关键字进行搜索，同样可以找到很多网站的后台。此外，我们还可以搜索一下网站的数据库地址，以“inurl:data”、“inurl:db”为关键字进行搜索即可。</p>
+</blockquote>
+<h5 id="搜索特殊URL：通过inurl语法搜索特殊URL，我们可以找到很多网站程序的漏洞，例如最早IIS中的Uncode目录遍历漏洞，我们可以构造“inurl-／winnt／system32／cmd-exe-／c-dir”这样的关键字进行搜索，不过目前要搜索到存在这种古董漏洞的网站是比较困难的。再比如前段日子很火的上传漏洞，我们使用““inurl-upload-asp”或“inurl-upload-soft-asp”即可找到很多上传页面，此时再用工具进行木马上传就可以。"><a href="#搜索特殊URL：通过inurl语法搜索特殊URL，我们可以找到很多网站程序的漏洞，例如最早IIS中的Uncode目录遍历漏洞，我们可以构造“inurl-／winnt／system32／cmd-exe-／c-dir”这样的关键字进行搜索，不过目前要搜索到存在这种古董漏洞的网站是比较困难的。再比如前段日子很火的上传漏洞，我们使用““inurl-upload-asp”或“inurl-upload-soft-asp”即可找到很多上传页面，此时再用工具进行木马上传就可以。" class="headerlink" title="搜索特殊URL：通过inurl语法搜索特殊URL，我们可以找到很多网站程序的漏洞，例如最早IIS中的Uncode目录遍历漏洞，我们可以构造“inurl:／winnt／system32／cmd exe?／c+dir”这样的关键字进行搜索，不过目前要搜索到存在这种古董漏洞的网站是比较困难的。再比如前段日子很火的上传漏洞，我们使用““inurl:upload.asp”或“inurl:upload_soft.asp”即可找到很多上传页面，此时再用工具进行木马上传就可以。"></a>搜索特殊URL：通过inurl语法搜索特殊URL，我们可以找到很多网站程序的漏洞，例如最早IIS中的Uncode目录遍历漏洞，我们可以构造“inurl:／winnt／system32／cmd exe?／c+dir”这样的关键字进行搜索，不过目前要搜索到存在这种古董漏洞的网站是比较困难的。再比如前段日子很火的上传漏洞，我们使用““inurl:upload.asp”或“inurl:upload_soft.asp”即可找到很多上传页面，此时再用工具进行木马上传就可以。</h5><h3 id="intext"><a href="#intext" class="headerlink" title="intext"></a>intext</h3><h5 id="intext的作用是搜索网页中的指定字符，这貌似在Google中没有什么作用，不过在以“intext-to-parent-directory”为关键字进行搜索后，我们会很惊奇的发现，无数网站的目录暴露在我们眼前。我们可以在其中随意切换目录，浏览文件，就像拥有了一个简单的Webshell。形成这种现象的原因是由于IIS的配置疏忽。同样，中文IIS配置疏忽也可能出现类似的漏洞，我们用“intext-转到父目录”就可以找到很多有漏洞的中文网站。"><a href="#intext的作用是搜索网页中的指定字符，这貌似在Google中没有什么作用，不过在以“intext-to-parent-directory”为关键字进行搜索后，我们会很惊奇的发现，无数网站的目录暴露在我们眼前。我们可以在其中随意切换目录，浏览文件，就像拥有了一个简单的Webshell。形成这种现象的原因是由于IIS的配置疏忽。同样，中文IIS配置疏忽也可能出现类似的漏洞，我们用“intext-转到父目录”就可以找到很多有漏洞的中文网站。" class="headerlink" title="intext的作用是搜索网页中的指定字符，这貌似在Google中没有什么作用，不过在以“intext:to parent directory”为关键字进行搜索后，我们会很惊奇的发现，无数网站的目录暴露在我们眼前。我们可以在其中随意切换目录，浏览文件，就像拥有了一个简单的Webshell。形成这种现象的原因是由于IIS的配置疏忽。同样，中文IIS配置疏忽也可能出现类似的漏洞，我们用“intext:转到父目录”就可以找到很多有漏洞的中文网站。"></a>intext的作用是搜索网页中的指定字符，这貌似在Google中没有什么作用，不过在以“intext:to parent directory”为关键字进行搜索后，我们会很惊奇的发现，无数网站的目录暴露在我们眼前。我们可以在其中随意切换目录，浏览文件，就像拥有了一个简单的Webshell。形成这种现象的原因是由于IIS的配置疏忽。同样，中文IIS配置疏忽也可能出现类似的漏洞，我们用“intext:转到父目录”就可以找到很多有漏洞的中文网站。</h5><h3 id="filetype"><a href="#filetype" class="headerlink" title="filetype"></a>filetype</h3><h5 id="Filetype的作用是搜索指定文件。假如我们要搜索网站的数据库文件，那么可以以“filetype-mdb”为关键字进行搜索，很快就可以下载到不少网站的数据库文件。当然，Filetype语法的作用不仅于此，在和其他语法配合使用的时候更能显示出其强大作用。"><a href="#Filetype的作用是搜索指定文件。假如我们要搜索网站的数据库文件，那么可以以“filetype-mdb”为关键字进行搜索，很快就可以下载到不少网站的数据库文件。当然，Filetype语法的作用不仅于此，在和其他语法配合使用的时候更能显示出其强大作用。" class="headerlink" title="Filetype的作用是搜索指定文件。假如我们要搜索网站的数据库文件，那么可以以“filetype:mdb”为关键字进行搜索，很快就可以下载到不少网站的数据库文件。当然，Filetype语法的作用不仅于此，在和其他语法配合使用的时候更能显示出其强大作用。"></a>Filetype的作用是搜索指定文件。假如我们要搜索网站的数据库文件，那么可以以“filetype:mdb”为关键字进行搜索，很快就可以下载到不少网站的数据库文件。当然，Filetype语法的作用不仅于此，在和其他语法配合使用的时候更能显示出其强大作用。</h5><h3 id="Site"><a href="#Site" class="headerlink" title="Site"></a>Site</h3><h5 id="黑客使用Site，通常都是做渗透前的信息刺探。Site语法可以显示所有和目标网站有联系的页面，从中或多或少存在一些关于目标网站的资料，这对于黑客而言就是渗透的突破口，是关于目标网站的一份详尽的报告。"><a href="#黑客使用Site，通常都是做渗透前的信息刺探。Site语法可以显示所有和目标网站有联系的页面，从中或多或少存在一些关于目标网站的资料，这对于黑客而言就是渗透的突破口，是关于目标网站的一份详尽的报告。" class="headerlink" title="黑客使用Site，通常都是做渗透前的信息刺探。Site语法可以显示所有和目标网站有联系的页面，从中或多或少存在一些关于目标网站的资料，这对于黑客而言就是渗透的突破口，是关于目标网站的一份详尽的报告。"></a>黑客使用Site，通常都是做渗透前的信息刺探。Site语法可以显示所有和目标网站有联系的页面，从中或多或少存在一些关于目标网站的资料，这对于黑客而言就是渗透的突破口，是关于目标网站的一份详尽的报告。</h5><h1 id="语法组合，威力加倍"><a href="#语法组合，威力加倍" class="headerlink" title="语法组合，威力加倍"></a>语法组合，威力加倍</h1><h5 id="虽然上文中介绍的这几个语法能各自完成渗透中的一些步骤，但是只使用一个语法进行渗透，其效率是很低下的。Google的威力在于能将多个语法组合起来，这样就可以快速地找到我们需要的东西。下面我们来模拟黑客是如何使用Google语法组合来渗透一个网站的。"><a href="#虽然上文中介绍的这几个语法能各自完成渗透中的一些步骤，但是只使用一个语法进行渗透，其效率是很低下的。Google的威力在于能将多个语法组合起来，这样就可以快速地找到我们需要的东西。下面我们来模拟黑客是如何使用Google语法组合来渗透一个网站的。" class="headerlink" title="虽然上文中介绍的这几个语法能各自完成渗透中的一些步骤，但是只使用一个语法进行渗透，其效率是很低下的。Google的威力在于能将多个语法组合起来，这样就可以快速地找到我们需要的东西。下面我们来模拟黑客是如何使用Google语法组合来渗透一个网站的。"></a>虽然上文中介绍的这几个语法能各自完成渗透中的一些步骤，但是只使用一个语法进行渗透，其效率是很低下的。Google的威力在于能将多个语法组合起来，这样就可以快速地找到我们需要的东西。下面我们来模拟黑客是如何使用Google语法组合来渗透一个网站的。</h5><h3 id="信息刺探"><a href="#信息刺探" class="headerlink" title="信息刺探"></a>信息刺探</h3><h6 id="想检测一个网站，通常第一步都是对目标网站进行信息刺探。这时可以使用“Site-目标网站”来获取相关网页，从中提取有用的资料。"><a href="#想检测一个网站，通常第一步都是对目标网站进行信息刺探。这时可以使用“Site-目标网站”来获取相关网页，从中提取有用的资料。" class="headerlink" title="想检测一个网站，通常第一步都是对目标网站进行信息刺探。这时可以使用“Site:目标网站”来获取相关网页，从中提取有用的资料。"></a>想检测一个网站，通常第一步都是对目标网站进行信息刺探。这时可以使用“Site:目标网站”来获取相关网页，从中提取有用的资料。</h6><h3 id="搜索相关页面"><a href="#搜索相关页面" class="headerlink" title="搜索相关页面"></a>搜索相关页面</h3><h5 id="下载网站的数据库搜索“Site-目标网站-Filetype-mdb”就可以寻找目标网站的数据库，其中的Site语法限定搜索范围，Filetype决定搜索目标。用这种方法有一个缺点，就是下载到数据库的成功率较低。在这里我们还可以采用另一种语法组合，前提是目标网站存在IIS配置缺陷，即可以随意浏览站点文件夹，我们搜索“Site-目标网站-intext-to-parent-directory”来确定其是否存在此漏洞。在确定漏洞存在后，可以使用“Site-目标网站-intext-to-parent-directory-intext-mdb”进行数据库的搜索。"><a href="#下载网站的数据库搜索“Site-目标网站-Filetype-mdb”就可以寻找目标网站的数据库，其中的Site语法限定搜索范围，Filetype决定搜索目标。用这种方法有一个缺点，就是下载到数据库的成功率较低。在这里我们还可以采用另一种语法组合，前提是目标网站存在IIS配置缺陷，即可以随意浏览站点文件夹，我们搜索“Site-目标网站-intext-to-parent-directory”来确定其是否存在此漏洞。在确定漏洞存在后，可以使用“Site-目标网站-intext-to-parent-directory-intext-mdb”进行数据库的搜索。" class="headerlink" title="下载网站的数据库搜索“Site:目标网站 Filetype:mdb”就可以寻找目标网站的数据库，其中的Site语法限定搜索范围，Filetype决定搜索目标。用这种方法有一个缺点，就是下载到数据库的成功率较低。在这里我们还可以采用另一种语法组合，前提是目标网站存在IIS配置缺陷，即可以随意浏览站点文件夹，我们搜索“Site:目标网站 intext:to parent directory”来确定其是否存在此漏洞。在确定漏洞存在后，可以使用“Site:目标网站 intext:to parent directory+intext.mdb”进行数据库的搜索。"></a>下载网站的数据库搜索“Site:目标网站 Filetype:mdb”就可以寻找目标网站的数据库，其中的Site语法限定搜索范围，Filetype决定搜索目标。用这种方法有一个缺点，就是下载到数据库的成功率较低。在这里我们还可以采用另一种语法组合，前提是目标网站存在IIS配置缺陷，即可以随意浏览站点文件夹，我们搜索“Site:目标网站 intext:to parent directory”来确定其是否存在此漏洞。在确定漏洞存在后，可以使用“Site:目标网站 intext:to parent directory+intext.mdb”进行数据库的搜索。</h5><h3 id="找到网站数据库"><a href="#找到网站数据库" class="headerlink" title="找到网站数据库"></a>找到网站数据库</h3><h5 id="登录后台管理下载到数据库后，我们就可以从中找到网站的管理员帐户和密码，并登录网站的后台。对于网站后台的查找，可以使用语法组合“Site-目标网站-intitle-管理”或者“Site-目标网站-inurl-login-asp”进行搜索，当然我们可以在这里进行联想以不同的字符进行搜索，这样就有很大的概率可以找到网站的后台管理地址。接下去就可以在后台上传Webshll，进一步提升权限，在此不再阐述。利用其他漏洞如果下载数据库不成功，我们还可以尝试其他的检测方法。例如寻找上传漏洞，搜索“Site-目标网站-inurl-upload-asp”。此外，我们还可以根据一些程序漏洞的特征，定制出Google的语句。"><a href="#登录后台管理下载到数据库后，我们就可以从中找到网站的管理员帐户和密码，并登录网站的后台。对于网站后台的查找，可以使用语法组合“Site-目标网站-intitle-管理”或者“Site-目标网站-inurl-login-asp”进行搜索，当然我们可以在这里进行联想以不同的字符进行搜索，这样就有很大的概率可以找到网站的后台管理地址。接下去就可以在后台上传Webshll，进一步提升权限，在此不再阐述。利用其他漏洞如果下载数据库不成功，我们还可以尝试其他的检测方法。例如寻找上传漏洞，搜索“Site-目标网站-inurl-upload-asp”。此外，我们还可以根据一些程序漏洞的特征，定制出Google的语句。" class="headerlink" title="登录后台管理下载到数据库后，我们就可以从中找到网站的管理员帐户和密码，并登录网站的后台。对于网站后台的查找，可以使用语法组合“Site:目标网站 intitle:管理”或者“Site:目标网站 inurl:login.asp”进行搜索，当然我们可以在这里进行联想以不同的字符进行搜索，这样就有很大的概率可以找到网站的后台管理地址。接下去就可以在后台上传Webshll，进一步提升权限，在此不再阐述。利用其他漏洞如果下载数据库不成功，我们还可以尝试其他的检测方法。例如寻找上传漏洞，搜索“Site:目标网站 inurl:upload.asp”。此外，我们还可以根据一些程序漏洞的特征，定制出Google的语句。"></a>登录后台管理下载到数据库后，我们就可以从中找到网站的管理员帐户和密码，并登录网站的后台。对于网站后台的查找，可以使用语法组合“Site:目标网站 intitle:管理”或者“Site:目标网站 inurl:login.asp”进行搜索，当然我们可以在这里进行联想以不同的字符进行搜索，这样就有很大的概率可以找到网站的后台管理地址。接下去就可以在后台上传Webshll，进一步提升权限，在此不再阐述。利用其他漏洞如果下载数据库不成功，我们还可以尝试其他的检测方法。例如寻找上传漏洞，搜索“Site:目标网站 inurl:upload.asp”。此外，我们还可以根据一些程序漏洞的特征，定制出Google的语句。</h5><blockquote>
+<p>Google Hack可以灵活地组合法语，合理的语法组合将使检测显得易如反掌，再加入自己的搜索字符，Google完全可以成为你独一无二的黑客工具。</p>
+</blockquote>
+<h4 id="小知识点：robots-txt文件中可能会包含网站的目录结构"><a href="#小知识点：robots-txt文件中可能会包含网站的目录结构" class="headerlink" title="小知识点：robots.txt文件中可能会包含网站的目录结构"></a>小知识点：robots.txt文件中可能会包含网站的目录结构</h4><blockquote>
+<p>User-agent: *<br>Disallow: /data/<br>Disallow: /db/<br>其中Disallow参数后面的是禁止robot收录部分的路径，就可以让网站远离Google了。</p>
+</blockquote>
+<h5 id="以上知识点有参阅于：shangjingxiaowu（嘿嘿，其实我对语法也遗忘的差不多了～～～！，这下好了给我复习过来了）也可以看下这篇文章，渗透测试之信息收集（一），有详细介绍，因为有类似的了…-！！其实我还想写下去的，但我问了下大大，他告诉我说，我在写下去要么就写渗透过程，而我比较水…泪奔-参考资料："><a href="#以上知识点有参阅于：shangjingxiaowu（嘿嘿，其实我对语法也遗忘的差不多了～～～！，这下好了给我复习过来了）也可以看下这篇文章，渗透测试之信息收集（一），有详细介绍，因为有类似的了…-！！其实我还想写下去的，但我问了下大大，他告诉我说，我在写下去要么就写渗透过程，而我比较水…泪奔-参考资料：" class="headerlink" title="以上知识点有参阅于：shangjingxiaowu（嘿嘿，其实我对语法也遗忘的差不多了～～～！，这下好了给我复习过来了）也可以看下这篇文章，渗透测试之信息收集（一），有详细介绍，因为有类似的了….！！其实我还想写下去的，但我问了下大大，他告诉我说，我在写下去要么就写渗透过程，而我比较水…泪奔~参考资料："></a>以上知识点有参阅于：<a href="http://m.cnhonkerarmy.com/forum.php?mod=viewthread&tid=129629&highlight=%CB%D1%CB%F7%D3%EF%B7%A8" target="_blank" rel="noopener" title="shangjingxiaowu">shangjingxiaowu</a>（嘿嘿，其实我对语法也遗忘的差不多了～～～！，这下好了给我复习过来了）也可以看下这篇文章，渗透测试之信息收集（一），有详细介绍，因为有类似的了….！！其实我还想写下去的，但我问了下大大，他告诉我说，我在写下去要么就写渗透过程，而我比较水…泪奔~参考资料：</h5><p><a href="https://blog.csdn.net/weixin_42267704/article/details/89208899" target="_blank" rel="noopener">https://blog.csdn.net/weixin_42267704/article/details/89208899</a><br><a href="https://blog.csdn.net/sunxinty/article/details/52624380" target="_blank" rel="noopener">https://blog.csdn.net/sunxinty/article/details/52624380</a></p>
+
+  </div>
+</article>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="https://github.com/cuzakali" target="_blank" rel="noopener">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Web安全的一个抉择"><span class="toc-number">1.</span> <span class="toc-text">Web安全的一个抉择</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#信息收集"><span class="toc-number">1.1.</span> <span class="toc-text">信息收集</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#接下来就谈谈信息收集的思路"><span class="toc-number">1.2.</span> <span class="toc-text">接下来就谈谈信息收集的思路</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#通常信息收集常用到的有：子域名爆破以及爬取、网站CMS识别、网站目录爆破以及爬取、在就是邮箱手机敏感信息的收集，whios以及业务的流程，关于业务流程我建议大家画图，因为目前网站业务都挺多的，这里推荐大家使用processon有现成的一些画图模块等。"><span class="toc-number">1.2.0.0.1.</span> <span class="toc-text">通常信息收集常用到的有：子域名爆破以及爬取、网站CMS识别、网站目录爆破以及爬取、在就是邮箱手机敏感信息的收集，whios以及业务的流程，关于业务流程我建议大家画图，因为目前网站业务都挺多的，这里推荐大家使用processon有现成的一些画图模块等。</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#下面介绍一些搜索语法"><span class="toc-number">1.2.1.</span> <span class="toc-text">下面介绍一些搜索语法</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#intitle：-搜索我们感兴趣的标题：管理-login-系统inurl：-搜索我们感兴趣的URL：比如id，又比如admin，甚至password重置密码链接等，intext-搜索指定的字符，比如邮箱，手机，联系方式等Filetype：搜索指定类型结尾的url-例如admin那么他将搜索admin结尾的URLSite：这个很常用到了，就是返回你输入的域名旗下所有有关的页面了解了Google的基本语法后，我们来看一下如何使用这些语法进行Google-Hack的，这些语法在渗透的过程中又会起到怎样的作用呢？"><span class="toc-number">1.2.1.0.1.</span> <span class="toc-text">intitle： 搜索我们感兴趣的标题：管理 login 系统inurl： 搜索我们感兴趣的URL：比如id，又比如admin，甚至password重置密码链接等，intext: 搜索指定的字符，比如邮箱，手机，联系方式等Filetype：搜索指定类型结尾的url 例如admin那么他将搜索admin结尾的URLSite：这个很常用到了，就是返回你输入的域名旗下所有有关的页面了解了Google的基本语法后，我们来看一下如何使用这些语法进行Google Hack的，这些语法在渗透的过程中又会起到怎样的作用呢？</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#intitle"><span class="toc-number">1.2.2.</span> <span class="toc-text">intitle</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#intitle语法通常被用来搜索网站的后台、特殊页面和文件，通过在Google中搜索“intitle-登录”、“intitle-管理”就可以找到很多网站的后台登录页面。此外，intitle语法还可以被用在搜索文件上，例如搜索“intitle-”indexof”etc-shadow”就可以找到Linux中因为配置不合理而泄露出来的用户密码文件。"><span class="toc-number">1.2.2.0.1.</span> <span class="toc-text">intitle语法通常被用来搜索网站的后台、特殊页面和文件，通过在Google中搜索“intitle:登录”、“intitle:管理”就可以找到很多网站的后台登录页面。此外，intitle语法还可以被用在搜索文件上，例如搜索“intitle:”indexof”etc&#x2F;shadow”就可以找到Linux中因为配置不合理而泄露出来的用户密码文件。</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#inurl"><span class="toc-number">1.2.3.</span> <span class="toc-text">inurl</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Google中，inurl发挥的作用的最大，主要可以分为以下两个方面-寻找网站后台登录地址，搜索特殊URL。"><span class="toc-number">1.2.3.0.1.</span> <span class="toc-text">Google中，inurl发挥的作用的最大，主要可以分为以下两个方面:寻找网站后台登录地址，搜索特殊URL。</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#搜索特殊URL：通过inurl语法搜索特殊URL，我们可以找到很多网站程序的漏洞，例如最早IIS中的Uncode目录遍历漏洞，我们可以构造“inurl-／winnt／system32／cmd-exe-／c-dir”这样的关键字进行搜索，不过目前要搜索到存在这种古董漏洞的网站是比较困难的。再比如前段日子很火的上传漏洞，我们使用““inurl-upload-asp”或“inurl-upload-soft-asp”即可找到很多上传页面，此时再用工具进行木马上传就可以。"><span class="toc-number">1.2.3.0.2.</span> <span class="toc-text">搜索特殊URL：通过inurl语法搜索特殊URL，我们可以找到很多网站程序的漏洞，例如最早IIS中的Uncode目录遍历漏洞，我们可以构造“inurl:／winnt／system32／cmd exe?／c+dir”这样的关键字进行搜索，不过目前要搜索到存在这种古董漏洞的网站是比较困难的。再比如前段日子很火的上传漏洞，我们使用““inurl:upload.asp”或“inurl:upload_soft.asp”即可找到很多上传页面，此时再用工具进行木马上传就可以。</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#intext"><span class="toc-number">1.2.4.</span> <span class="toc-text">intext</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#intext的作用是搜索网页中的指定字符，这貌似在Google中没有什么作用，不过在以“intext-to-parent-directory”为关键字进行搜索后，我们会很惊奇的发现，无数网站的目录暴露在我们眼前。我们可以在其中随意切换目录，浏览文件，就像拥有了一个简单的Webshell。形成这种现象的原因是由于IIS的配置疏忽。同样，中文IIS配置疏忽也可能出现类似的漏洞，我们用“intext-转到父目录”就可以找到很多有漏洞的中文网站。"><span class="toc-number">1.2.4.0.1.</span> <span class="toc-text">intext的作用是搜索网页中的指定字符，这貌似在Google中没有什么作用，不过在以“intext:to parent directory”为关键字进行搜索后，我们会很惊奇的发现，无数网站的目录暴露在我们眼前。我们可以在其中随意切换目录，浏览文件，就像拥有了一个简单的Webshell。形成这种现象的原因是由于IIS的配置疏忽。同样，中文IIS配置疏忽也可能出现类似的漏洞，我们用“intext:转到父目录”就可以找到很多有漏洞的中文网站。</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#filetype"><span class="toc-number">1.2.5.</span> <span class="toc-text">filetype</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Filetype的作用是搜索指定文件。假如我们要搜索网站的数据库文件，那么可以以“filetype-mdb”为关键字进行搜索，很快就可以下载到不少网站的数据库文件。当然，Filetype语法的作用不仅于此，在和其他语法配合使用的时候更能显示出其强大作用。"><span class="toc-number">1.2.5.0.1.</span> <span class="toc-text">Filetype的作用是搜索指定文件。假如我们要搜索网站的数据库文件，那么可以以“filetype:mdb”为关键字进行搜索，很快就可以下载到不少网站的数据库文件。当然，Filetype语法的作用不仅于此，在和其他语法配合使用的时候更能显示出其强大作用。</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Site"><span class="toc-number">1.2.6.</span> <span class="toc-text">Site</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#黑客使用Site，通常都是做渗透前的信息刺探。Site语法可以显示所有和目标网站有联系的页面，从中或多或少存在一些关于目标网站的资料，这对于黑客而言就是渗透的突破口，是关于目标网站的一份详尽的报告。"><span class="toc-number">1.2.6.0.1.</span> <span class="toc-text">黑客使用Site，通常都是做渗透前的信息刺探。Site语法可以显示所有和目标网站有联系的页面，从中或多或少存在一些关于目标网站的资料，这对于黑客而言就是渗透的突破口，是关于目标网站的一份详尽的报告。</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#语法组合，威力加倍"><span class="toc-number">2.</span> <span class="toc-text">语法组合，威力加倍</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#虽然上文中介绍的这几个语法能各自完成渗透中的一些步骤，但是只使用一个语法进行渗透，其效率是很低下的。Google的威力在于能将多个语法组合起来，这样就可以快速地找到我们需要的东西。下面我们来模拟黑客是如何使用Google语法组合来渗透一个网站的。"><span class="toc-number">2.0.0.0.1.</span> <span class="toc-text">虽然上文中介绍的这几个语法能各自完成渗透中的一些步骤，但是只使用一个语法进行渗透，其效率是很低下的。Google的威力在于能将多个语法组合起来，这样就可以快速地找到我们需要的东西。下面我们来模拟黑客是如何使用Google语法组合来渗透一个网站的。</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#信息刺探"><span class="toc-number">2.0.1.</span> <span class="toc-text">信息刺探</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#想检测一个网站，通常第一步都是对目标网站进行信息刺探。这时可以使用“Site-目标网站”来获取相关网页，从中提取有用的资料。"><span class="toc-number">2.0.1.0.0.1.</span> <span class="toc-text">想检测一个网站，通常第一步都是对目标网站进行信息刺探。这时可以使用“Site:目标网站”来获取相关网页，从中提取有用的资料。</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#搜索相关页面"><span class="toc-number">2.0.2.</span> <span class="toc-text">搜索相关页面</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#下载网站的数据库搜索“Site-目标网站-Filetype-mdb”就可以寻找目标网站的数据库，其中的Site语法限定搜索范围，Filetype决定搜索目标。用这种方法有一个缺点，就是下载到数据库的成功率较低。在这里我们还可以采用另一种语法组合，前提是目标网站存在IIS配置缺陷，即可以随意浏览站点文件夹，我们搜索“Site-目标网站-intext-to-parent-directory”来确定其是否存在此漏洞。在确定漏洞存在后，可以使用“Site-目标网站-intext-to-parent-directory-intext-mdb”进行数据库的搜索。"><span class="toc-number">2.0.2.0.1.</span> <span class="toc-text">下载网站的数据库搜索“Site:目标网站 Filetype:mdb”就可以寻找目标网站的数据库，其中的Site语法限定搜索范围，Filetype决定搜索目标。用这种方法有一个缺点，就是下载到数据库的成功率较低。在这里我们还可以采用另一种语法组合，前提是目标网站存在IIS配置缺陷，即可以随意浏览站点文件夹，我们搜索“Site:目标网站 intext:to parent directory”来确定其是否存在此漏洞。在确定漏洞存在后，可以使用“Site:目标网站 intext:to parent directory+intext.mdb”进行数据库的搜索。</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#找到网站数据库"><span class="toc-number">2.0.3.</span> <span class="toc-text">找到网站数据库</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#登录后台管理下载到数据库后，我们就可以从中找到网站的管理员帐户和密码，并登录网站的后台。对于网站后台的查找，可以使用语法组合“Site-目标网站-intitle-管理”或者“Site-目标网站-inurl-login-asp”进行搜索，当然我们可以在这里进行联想以不同的字符进行搜索，这样就有很大的概率可以找到网站的后台管理地址。接下去就可以在后台上传Webshll，进一步提升权限，在此不再阐述。利用其他漏洞如果下载数据库不成功，我们还可以尝试其他的检测方法。例如寻找上传漏洞，搜索“Site-目标网站-inurl-upload-asp”。此外，我们还可以根据一些程序漏洞的特征，定制出Google的语句。"><span class="toc-number">2.0.3.0.1.</span> <span class="toc-text">登录后台管理下载到数据库后，我们就可以从中找到网站的管理员帐户和密码，并登录网站的后台。对于网站后台的查找，可以使用语法组合“Site:目标网站 intitle:管理”或者“Site:目标网站 inurl:login.asp”进行搜索，当然我们可以在这里进行联想以不同的字符进行搜索，这样就有很大的概率可以找到网站的后台管理地址。接下去就可以在后台上传Webshll，进一步提升权限，在此不再阐述。利用其他漏洞如果下载数据库不成功，我们还可以尝试其他的检测方法。例如寻找上传漏洞，搜索“Site:目标网站 inurl:upload.asp”。此外，我们还可以根据一些程序漏洞的特征，定制出Google的语句。</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#小知识点：robots-txt文件中可能会包含网站的目录结构"><span class="toc-number">2.0.3.1.</span> <span class="toc-text">小知识点：robots.txt文件中可能会包含网站的目录结构</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#以上知识点有参阅于：shangjingxiaowu（嘿嘿，其实我对语法也遗忘的差不多了～～～！，这下好了给我复习过来了）也可以看下这篇文章，渗透测试之信息收集（一），有详细介绍，因为有类似的了…-！！其实我还想写下去的，但我问了下大大，他告诉我说，我在写下去要么就写渗透过程，而我比较水…泪奔-参考资料："><span class="toc-number">2.0.3.1.1.</span> <span class="toc-text">以上知识点有参阅于：shangjingxiaowu（嘿嘿，其实我对语法也遗忘的差不多了～～～！，这下好了给我复习过来了）也可以看下这篇文章，渗透测试之信息收集（一），有详细介绍，因为有类似的了….！！其实我还想写下去的，但我问了下大大，他告诉我说，我在写下去要么就写渗透过程，而我比较水…泪奔~参考资料：</span></a></li></ol></li></ol></li></ol></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2020/02/08/akali&#39;s%20web%20road%2000/" target="_blank" rel="noopener"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2020/02/08/akali&#39;s%20web%20road%2000/&text=akali&#39;s web road 00" target="_blank" rel="noopener"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2020/02/08/akali&#39;s%20web%20road%2000/&title=akali&#39;s web road 00" target="_blank" rel="noopener"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2020/02/08/akali&#39;s%20web%20road%2000/&is_video=false&description=akali&#39;s web road 00" target="_blank" rel="noopener"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=akali&#39;s web road 00&body=Check out this article: http://yoursite.com/2020/02/08/akali&#39;s%20web%20road%2000/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2020/02/08/akali&#39;s%20web%20road%2000/&title=akali&#39;s web road 00" target="_blank" rel="noopener"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2020/02/08/akali&#39;s%20web%20road%2000/&title=akali&#39;s web road 00" target="_blank" rel="noopener"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2020/02/08/akali&#39;s%20web%20road%2000/&title=akali&#39;s web road 00" target="_blank" rel="noopener"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2020/02/08/akali&#39;s%20web%20road%2000/&title=akali&#39;s web road 00" target="_blank" rel="noopener"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2020/02/08/akali&#39;s%20web%20road%2000/&name=akali&#39;s web road 00&description=" target="_blank" rel="noopener"><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick='$("#toc-footer").toggle();return false;'><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick='$("#share-footer").toggle();return false;'><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick='$("#nav-footer").toggle();return false;'><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2020 John Doe
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="https://github.com/cuzakali" target="_blank" rel="noopener">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+
+
+<link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
+
+
+
+<!-- jquery -->
+
+<script src="/lib/jquery/jquery.min.js"></script>
+
+
+<script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- Google Analytics -->
+
+    <script type="text/javascript">
+        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-86660611-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+<!-- Disqus Comments -->
+
+
