@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="Web安全&amp;挖洞篇这篇文章主要是用来记录下，我挖洞的思路以及挖洞的手法，由钱入深细细道来  目标 中国邮政 铁路公司     涉及一些关键东西我可能会作打码处理，请见谅 信息收集** 首先我拿到了我要检测的域名，下面简称资产，哇好多的感觉，￥￥￥￥￥￥ - -,然后我们进行第一步，扫子域名咯，在就是语法收集一波咯，这里我们需要判断的有**  是否采用了cdn。 启用了什么端口。   采用的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="akali&#39;s web road 02">
+<meta property="og:url" content="http://yoursite.com/2020/02/09/akali-s-web-road-02/index.html">
+<meta property="og:site_name" content="akali&#39; blog">
+<meta property="og:description" content="Web安全&amp;挖洞篇这篇文章主要是用来记录下，我挖洞的思路以及挖洞的手法，由钱入深细细道来  目标 中国邮政 铁路公司     涉及一些关键东西我可能会作打码处理，请见谅 信息收集** 首先我拿到了我要检测的域名，下面简称资产，哇好多的感觉，￥￥￥￥￥￥ - -,然后我们进行第一步，扫子域名咯，在就是语法收集一波咯，这里我们需要判断的有**  是否采用了cdn。 启用了什么端口。   采用的">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://akali-1253144332.cos.ap-guangzhou.myqcloud.com/images.jfif">
+<meta property="article:published_time" content="2020-02-09T05:13:09.000Z">
+<meta property="article:modified_time" content="2020-02-09T06:16:01.101Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://akali-1253144332.cos.ap-guangzhou.myqcloud.com/images.jfif">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>akali&#39;s web road 02</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- rss -->
+    
+    
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="https://github.com/cuzakali" target="_blank" rel="noopener">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" href="/2020/02/08/akali-s-web-road-01/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();' onclick='$("#share").toggle();return false;'></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2020/02/09/akali-s-web-road-02/" target="_blank" rel="noopener"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2020/02/09/akali-s-web-road-02/&text=akali&#39;s web road 02" target="_blank" rel="noopener"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2020/02/09/akali-s-web-road-02/&title=akali&#39;s web road 02" target="_blank" rel="noopener"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2020/02/09/akali-s-web-road-02/&is_video=false&description=akali&#39;s web road 02" target="_blank" rel="noopener"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=akali&#39;s web road 02&body=Check out this article: http://yoursite.com/2020/02/09/akali-s-web-road-02/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2020/02/09/akali-s-web-road-02/&title=akali&#39;s web road 02" target="_blank" rel="noopener"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2020/02/09/akali-s-web-road-02/&title=akali&#39;s web road 02" target="_blank" rel="noopener"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2020/02/09/akali-s-web-road-02/&title=akali&#39;s web road 02" target="_blank" rel="noopener"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2020/02/09/akali-s-web-road-02/&title=akali&#39;s web road 02" target="_blank" rel="noopener"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2020/02/09/akali-s-web-road-02/&name=akali&#39;s web road 02&description=" target="_blank" rel="noopener"><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Web安全-amp-挖洞篇"><span class="toc-number">1.</span> <span class="toc-text">Web安全&amp;挖洞篇</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#信息收集"><span class="toc-number">1.1.</span> <span class="toc-text">信息收集</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安全检测"><span class="toc-number">1.2.</span> <span class="toc-text">安全检测</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#说下检测的分类："><span class="toc-number">1.2.0.1.</span> <span class="toc-text">说下检测的分类：</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#标题H1"><span class="toc-number">2.</span> <span class="toc-text">标题H1</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index width mx-auto px2 my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        akali&#39;s web road 02
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">akali' blog</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2020-02-09T05:13:09.000Z" itemprop="datePublished">2020-02-09</time>
+    </div>
+
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h1 id="Web安全-amp-挖洞篇"><a href="#Web安全-amp-挖洞篇" class="headerlink" title="Web安全&amp;挖洞篇"></a>Web安全&amp;挖洞篇</h1><p><strong>这篇文章主要是用来记录下，我挖洞的思路以及挖洞的手法，由钱入深细细道来</strong></p>
+<ul>
+<li>目标<ul>
+<li>中国邮政</li>
+<li>铁路公司</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://akali-1253144332.cos.ap-guangzhou.myqcloud.com/images.jfif" alt="mark"></p>
+<p><strong>涉及一些关键东西我可能会作打码处理，请见谅</strong></p>
+<h2 id="信息收集"><a href="#信息收集" class="headerlink" title="信息收集"></a>信息收集</h2><p>** 首先我拿到了我要检测的域名，下面简称资产，哇好多的感觉，￥￥￥￥￥￥ - -,然后我们进行第一步，扫子域名咯，在就是语法收集一波咯，这里我们需要判断的有**</p>
+<ul>
+<li>是否采用了cdn。<ul>
+<li>启用了什么端口。</li>
+</ul>
+</li>
+<li>采用的是Windows还是Linux系统。</li>
+<li>用的什么程序，使用的什么语言，容器是什么。<ul>
+<li>网站是否开启了伪静态</li>
+<li>能否查询到cms指纹</li>
+</ul>
+</li>
+<li>是否采用了waf，采用的什么waf。<ul>
+<li>网站是否采用了加密</li>
+</ul>
+</li>
+<li>然后语法收集一波pdf,doc,docx,xls,ttf，,rar,zip,等文件<ul>
+<li>判断有没有什么有用的信息，保存下来。</li>
+</ul>
+</li>
+<li>因为考虑到不让扫目录，所以需要语法中搜索一下<ul>
+<li>比如admin login password registered</li>
+<li>在就是文件上传 、手机号、用户名、密码、身份证、使用方法、登录等字符搜索，在有最关键的一步，我建议把网站公开的邮箱和姓名给收集起来，搞不好有大用。</li>
+</ul>
+</li>
+<li>业务逻辑：比如注册的逻辑是什么？找回密码的逻辑是什么？购买的逻辑是什么，优惠券购物车等逻辑，逻辑有了之后；<ul>
+<li>在进行抓包判断有没有什么关键接口泄漏</li>
+<li>这一步可以判断出post提交参数有没有加密，存不存在爆破，有没有注入或者xss等，当然最好是留在最后，因为需要判断有没有什么waf，在综合信息。</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>之后就是总结咯，把信息综合起来，对照我上面说的一样一样进行完毕之后，你会得到一大波庞杂的信息，然后就是分析咯。<p>
+<div align=center>![冲鸭](https://akali-1253144332.cos.ap-guangzhou.myqcloud.com/chongya.jfif)
+
+
+
+
+
+
+</li>
+</ul>
+<h2 id="安全检测"><a href="#安全检测" class="headerlink" title="安全检测"></a>安全检测</h2><blockquote>
+<p>首先呢检测最好是根据owasptop10挨个下来，这里等我检测完我在来写啦，不喜欢纸上谈兵～</p>
+</blockquote>
+<h4 id="说下检测的分类："><a href="#说下检测的分类：" class="headerlink" title="说下检测的分类："></a>说下检测的分类：</h4><h1 id="标题H1"><a href="#标题H1" class="headerlink" title="标题H1"></a>标题H1</h1>
+  </div>
+</article>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="https://github.com/cuzakali" target="_blank" rel="noopener">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Web安全-amp-挖洞篇"><span class="toc-number">1.</span> <span class="toc-text">Web安全&amp;挖洞篇</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#信息收集"><span class="toc-number">1.1.</span> <span class="toc-text">信息收集</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安全检测"><span class="toc-number">1.2.</span> <span class="toc-text">安全检测</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#说下检测的分类："><span class="toc-number">1.2.0.1.</span> <span class="toc-text">说下检测的分类：</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#标题H1"><span class="toc-number">2.</span> <span class="toc-text">标题H1</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2020/02/09/akali-s-web-road-02/" target="_blank" rel="noopener"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2020/02/09/akali-s-web-road-02/&text=akali&#39;s web road 02" target="_blank" rel="noopener"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2020/02/09/akali-s-web-road-02/&title=akali&#39;s web road 02" target="_blank" rel="noopener"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2020/02/09/akali-s-web-road-02/&is_video=false&description=akali&#39;s web road 02" target="_blank" rel="noopener"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=akali&#39;s web road 02&body=Check out this article: http://yoursite.com/2020/02/09/akali-s-web-road-02/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2020/02/09/akali-s-web-road-02/&title=akali&#39;s web road 02" target="_blank" rel="noopener"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2020/02/09/akali-s-web-road-02/&title=akali&#39;s web road 02" target="_blank" rel="noopener"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2020/02/09/akali-s-web-road-02/&title=akali&#39;s web road 02" target="_blank" rel="noopener"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2020/02/09/akali-s-web-road-02/&title=akali&#39;s web road 02" target="_blank" rel="noopener"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2020/02/09/akali-s-web-road-02/&name=akali&#39;s web road 02&description=" target="_blank" rel="noopener"><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick='$("#toc-footer").toggle();return false;'><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick='$("#share-footer").toggle();return false;'><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick='$("#nav-footer").toggle();return false;'><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2020 John Doe
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="https://github.com/cuzakali" target="_blank" rel="noopener">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+
+
+<link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
+
+
+
+<!-- jquery -->
+
+<script src="/lib/jquery/jquery.min.js"></script>
+
+
+<script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- Google Analytics -->
+
+    <script type="text/javascript">
+        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-86660611-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+<!-- Disqus Comments -->
+
+
